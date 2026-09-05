@@ -1,0 +1,124 @@
+---
+title: "[COMPLETAR NOMBRE]"
+author: COMPLETAR
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    self_contained: true
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{r, echo=FALSE}
+RENDER_PERSONAL_DATA <- FALSE
+```
+
+```{css, echo=FALSE}
+a {
+  color: #556B2F; 
+}
+```
+
+# Aside
+
+![](Example_image.png){width="150"}
+
+## Contacto {#contact}
+
+```{r, eval=TRUE, echo=FALSE, warning=FALSE, results='asis'}
+redes_publicas <- '
+<i class="fa fa-linkedin"></i> 
+    [COMPLETAR](https://www.linkedin.com/in/COMPLETAR)
+<br>
+<i class="fa fa-github"></i>
+    [COMPLETAR](https://github.com/COMPLETAR)
+'
+
+if(RENDER_PERSONAL_DATA){
+cat(paste0('
+<br>
+<i class="fa fa-phone"></i> 
+  [COMPLETAR CELULAR]
+<br>
+<i class="fa fa-envelope"></i> 
+  [COMPLETAR MAIL]
+<br>', redes_publicas)) 
+} else {
+cat(redes_publicas)}
+```
+
+## Herramientas {#skills}
+
+-   [COMPLETAR herramientas EJ: GCP]
+
+## Disclaimer {#disclaimer}
+
+Última actualización: `r Sys.Date()`.
+
+# Main
+
+## [COMPLETAR NOMBRE Y APELLIDO] {#title}
+
+### [COMPLETAR ROL: EJ: DATA SCIENTIST / ECONOMISTA]
+
+[COMPLETAR DESCRIPCIÓN]
+
+## Educación {data-icon="graduation-cap" data-concise="true"}
+
+### [COMPLETAR INSTITUCIÓN]
+
+[COMPLETAR TÍTULO]
+
+Argentina
+
+[AÑO FIN] - [AÑO INICIO]
+
+### [COMPLETAR INSTITUCIÓN]
+
+[COMPLETAR TÍTULO]
+
+Argentina
+
+[AÑO FIN] - [AÑO INICIO]
+
+## Experiencia laboral {data-icon="suitcase"}
+
+### [COMPLETAR ROL]
+
+[COMPLETAR EMPRESA]
+
+Argentina
+
+[AÑO FIN] - [AÑO INICIO]
+
+-   [COMPLETAR TAREAS]
+
+### [COMPLETAR ROL]
+
+[COMPLETAR EMPRESA]
+
+Argentina
+
+[AÑO FIN] - [AÑO INICIO]
+
+-   [COMPLETAR TAREAS]
+
+## Enseñanza {data-icon="chalkboard-teacher"}
+
+### [COMPLETAR INSTITUCIÓN]
+
+[COMPLETAR TÍTULO]
+
+Argentina
+
+[AÑO FIN] - [AÑO INICIO]
+
+## Cursos y otros proyectos {data-icon="laptop"}
+
+### [COMPLETAR]
+
+[COMPLETAR]
+
+### [COMPLETAR OTRA SECCIÓN]
+
+[COMPLETAR]

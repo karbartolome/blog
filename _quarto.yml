@@ -6,10 +6,14 @@ website:
   navbar:
     right:
       - about.qmd
+      - text: "Workshops"
+        href: https://karbartolome.github.io/workshops/
       - icon: github
-        href: https://github.com/
+        href: https://github.com/karbartolome
       - icon: twitter
-        href: https://twitter.com
+        href: https://twitter.com/karbartolome
+      - icon: linkedin
+        href: https://www.linkedin.com/in/karinabartolome/
 format:
   html:
     theme: cosmo

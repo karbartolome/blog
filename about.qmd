@@ -1,19 +1,30 @@
 ---
-title: "About"
-image: profile.jpg
+title: "About me"
+image: "images/personal_pic.png"
+resources:
+  - cv/cv_karinabartolome.pdf
 about:
   template: jolla
-  links:
+  links: 
+    - icon: file-earmark-pdf
+      text: 'CV'
+      href: 'cv/cv_karinabartolome.pdf'
     - icon: twitter
       text: Twitter
-      href: https://twitter.com
+      href: https://www.twitter.com/karbartolome
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/karinabartolome/
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://www.github.com/karbartolome
 
 ---
 
-About this blog
+Hola! 👋
+
+Soy Economista (UNLP) y especialista en Métodos Cuantitativos para la gestión y análisis de datos en organizaciones (UBA). Actualmente me encuentro finalizando la maestría (UBA). Comencé mi carrera en ciencia de datos en el 2018, desempeñándome como Data Scientist en una fintech argentina (Ualá), en donde continúo trabajando como Data Science Tech Lead. Anteriormente trabajé en consultoría financiera en Oracle. 
+
+Regularmente publico posts vinculados a ciencia de datos: visualización, machine learning, entre otras cosas.
+
+➡️ Si te interesa que colaboremos en algún proyecto open source podes contactarme en cualquiera de mis redes.

@@ -1,0 +1,221 @@
+---
+title: "Karina Bartolomé"
+author: karbartolome
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    self_contained: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{r, echo=FALSE}
+RENDER_PERSONAL_DATA <- FALSE
+```
+
+```{css, echo=FALSE}
+a {
+  color: #556B2F; 
+}
+```
+
+
+# Aside
+
+## Contacto {#contact}
+
+
+```{r, eval=TRUE, echo=FALSE, warning=FALSE, results='asis'}
+redes_publicas <- '
+<i class="fa fa-linkedin"></i> 
+    [karinabartolome](https://www.linkedin.com/in/karinabartolome)
+<br>
+<i class="fa fa-github"></i>
+    [karbartolome](https://github.com/karbartolome)
+'
+
+if(RENDER_PERSONAL_DATA){
+cat(paste0('
+<br>
+<i class="fa fa-phone"></i> 
+  +54 11 61597207 
+<br>
+<i class="fa fa-envelope"></i> 
+  kar.bartolome@gmail.com
+<br>', redes_publicas)) 
+} else {
+cat(redes_publicas)}
+```
+
+## Skills {#skills}
+
+-   Economía / Estadística
+
+-   Machine learning / Optimización
+
+-   Open source: R, python, git/github / MLFlow / Optuna 
+
+-   Otros: GCP / AWS
+
+## Disclaimer {#disclaimer}
+
+Última actualización: `r Sys.Date()`.
+
+# Main
+
+## Karina Bartolomé {#title}
+
+### Economista \| Data Scientist
+
+Soy Economista graduada en la Universidad Nacional de La Plata. Cuento con una especialización en métodos cuantitativos (UBA) y actualmente me encuentro finalizando la tesis de la maestría. Comencé mi carrera en ciencia de datos en el 2019, desempeñándome como data scientist en una fintech argentina (Ualá), en donde continúo trabajando como líder técnica de proyectos de machine learning.
+
+## Educación {data-icon="graduation-cap" data-concise="true"}
+
+### Universidad de Buenos Aires (UBA)
+
+Maestría en métodos cuantitativos para la gestión y análisis de datos en organizaciones
+
+Argentina
+
+En curso - 2024
+
+### Universidad de Buenos Aires (UBA)
+
+Especialización en métodos cuantitativos para la gestión y análisis de datos en organizaciones
+
+Argentina
+
+2021
+
+### Universidad de La Plata (UNLP)
+
+Licenciatura en Economía
+
+Argentina
+
+2017
+
+## Experiencia laboral {data-icon="suitcase"}
+
+### Data Science Tech Lead
+
+Ualá
+
+Argentina
+
+2022 - 2023
+
+-   Coordinación de proyectos de machine learning dentro del área de data science.
+-   Herramientas: python, SQL, GCP, GitHub
+
+### Data Scientist Sr
+
+Ualá
+
+Argentina
+
+2021 - 2022
+
+-   Desarrollo de modelos de scoring crediticio, detección de fraude, entre otros. Principalmente en python
+-   Uso de herramientas de GCP para procesamiento de datos y modelado.
+-   Herramientas: R, python, SQL, GCP, GitHub
+
+### Data Scientist Ssr
+
+Ualá
+
+Argentina
+
+2019 - 2023
+
+-   Inicio del área de data science en Ualá
+-   Modelos de clasificaicón de texto con enfoques supervisados y no supervisado.
+-   Segmentación de la cartera de clientes (clustering)
+-   Herramientas: R, python, SQL, AWS, GitHub
+
+### Consultora en finanzas
+
+Oracle
+
+Argentina
+
+2018 - 2019
+
+- Consultoría en finanzas de empresas durante la implementación del ERP NetSuite
+- Reportes personalizados (SQL)
+
+## Enseñanza {data-icon="chalkboard-teacher"}
+
+### Universidad de Buenos Aires (UBA - FCE)
+
+Maestría en gestión y análisis de datos financieros
+
+Argentina 
+
+2024 - Actualidad
+
+Taller de programación
+
+- Introducción a conceptos de programación en python para el análisis de datos. 
+
+### Universidad de San Martin (UNSAM)
+
+Diplomatura en ciencias sociales computacionales y humanidades digitales
+
+Argentina 
+
+2023
+
+Introducción al modelado de datos
+
+- Regresión lineal y logística. Estimación, mínimos cuadrados, máxima verosimilitud. Interpretación y medidas de bondad de ajuste.
+- Nociones de aprendizaje automático (clasificación y regresión). Evaluación y sobre-ajuste.
+• Introducción a tidymodels.
+
+
+### EANT
+
+Data Science
+
+Argentina
+
+2019 - 2021
+
+-   Curso de data science con python y R. Introducción a modelos de regresión y clasificación (sklearn y caret).
+-   Curso de Data Analytics con python. Visualización de datos, NLP (topic modelling) y dashboards (dash).
+
+## Cursos y otros proyectos {data-icon="laptop"}
+
+### DS4A: Data science for all
+
+Correlation One
+
+América Latina
+
+2020
+
+DS4A es un programa de Softbank para capacitar a las personas del mundo en data science.
+
+Nuestro proyecto final del curso, Topic modelling sobre reseñas de empresas fintech, fue elegido como el mejor de Argentina.
+
+### Sitios Web
+
+Blogs que mantengo en mis tiempos libres
+
+Global
+
+Actualidad - 2020
+
+-   [Blog personal](https://karbartolome-blog.netlify.app/)
+-   [Blog de visualizaciones](https://karbartolome.netlify.app/)
+
+### Paquetes
+
+Participé en el desarrollo de 2 paquetes en R
+
+Global
+
+2021
+
+-   [{shinymatic}](https://github.com/karbartolome/shinymatic): Generar automáticamente todos los shiny inputs necesarios para simular una observación a partir de un dataframe.
+-   [{sknifedatar}](https://github.com/rafzamb/sknifedatar): Una extensión del paquete modeltime, para el modelado de múltiples series temporales.
