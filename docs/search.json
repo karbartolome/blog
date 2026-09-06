@@ -7,6 +7,62 @@
     "text": "Uso del subte en la Ciudad Autónoma de Buenos Aires\n\n\n\n\n\n\ntransportation\n\n\ngt\n\n\nviz\n\n\nr\n\n\n\nMediante el uso de datos de uso del subte en CABA, se explican distintas funcionalidades de los paquetes gt (grammar of tables) y ggplot2 (grammar of graphics). \n\n\n\n\n\nJan 15, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
+    "objectID": "cv/cv.html#contact",
+    "href": "cv/cv.html#contact",
+    "title": "Karina Bartolomé",
+    "section": "Contacto",
+    "text": "Contacto\n karinabartolome   karbartolome"
+  },
+  {
+    "objectID": "cv/cv.html#skills",
+    "href": "cv/cv.html#skills",
+    "title": "Karina Bartolomé",
+    "section": "Skills",
+    "text": "Skills\n\nEconomía / Estadística\nMachine learning / Optimización\nOpen source: R, python, git/github / MLFlow / Optuna\nOtros: GCP / AWS"
+  },
+  {
+    "objectID": "cv/cv.html#disclaimer",
+    "href": "cv/cv.html#disclaimer",
+    "title": "Karina Bartolomé",
+    "section": "Disclaimer",
+    "text": "Disclaimer\nÚltima actualización: 2026-09-05."
+  },
+  {
+    "objectID": "cv/cv.html#title",
+    "href": "cv/cv.html#title",
+    "title": "Karina Bartolomé",
+    "section": "Karina Bartolomé",
+    "text": "Karina Bartolomé\n\nEconomista | Data Scientist\nSoy Economista graduada en la Universidad Nacional de La Plata. Cuento con una especialización en métodos cuantitativos (UBA) y actualmente me encuentro finalizando la tesis de la maestría. Comencé mi carrera en ciencia de datos en el 2019, desempeñándome como data scientist en una fintech argentina (Ualá), en donde continúo trabajando como líder técnica de proyectos de machine learning."
+  },
+  {
+    "objectID": "cv/cv.html#educación",
+    "href": "cv/cv.html#educación",
+    "title": "Karina Bartolomé",
+    "section": "Educación",
+    "text": "Educación\n\nUniversidad de Buenos Aires (UBA)\nMaestría en métodos cuantitativos para la gestión y análisis de datos en organizaciones\nArgentina\nEn curso - 2024\n\n\nUniversidad de Buenos Aires (UBA)\nEspecialización en métodos cuantitativos para la gestión y análisis de datos en organizaciones\nArgentina\n2021\n\n\nUniversidad de La Plata (UNLP)\nLicenciatura en Economía\nArgentina\n2017"
+  },
+  {
+    "objectID": "cv/cv.html#experiencia-laboral",
+    "href": "cv/cv.html#experiencia-laboral",
+    "title": "Karina Bartolomé",
+    "section": "Experiencia laboral",
+    "text": "Experiencia laboral\n\nData Science Tech Lead\nUalá\nArgentina\n2022 - 2023\n\nCoordinación de proyectos de machine learning dentro del área de data science.\nHerramientas: python, SQL, GCP, GitHub\n\n\n\nData Scientist Sr\nUalá\nArgentina\n2021 - 2022\n\nDesarrollo de modelos de scoring crediticio, detección de fraude, entre otros. Principalmente en python\nUso de herramientas de GCP para procesamiento de datos y modelado.\nHerramientas: R, python, SQL, GCP, GitHub\n\n\n\nData Scientist Ssr\nUalá\nArgentina\n2019 - 2023\n\nInicio del área de data science en Ualá\nModelos de clasificaicón de texto con enfoques supervisados y no supervisado.\nSegmentación de la cartera de clientes (clustering)\nHerramientas: R, python, SQL, AWS, GitHub\n\n\n\nConsultora en finanzas\nOracle\nArgentina\n2018 - 2019\n\nConsultoría en finanzas de empresas durante la implementación del ERP NetSuite\nReportes personalizados (SQL)"
+  },
+  {
+    "objectID": "cv/cv.html#enseñanza",
+    "href": "cv/cv.html#enseñanza",
+    "title": "Karina Bartolomé",
+    "section": "Enseñanza",
+    "text": "Enseñanza\n\nUniversidad de Buenos Aires (UBA - FCE)\nMaestría en gestión y análisis de datos financieros\nArgentina\n2024 - Actualidad\nTaller de programación\n\nIntroducción a conceptos de programación en python para el análisis de datos.\n\n\n\nUniversidad de San Martin (UNSAM)\nDiplomatura en ciencias sociales computacionales y humanidades digitales\nArgentina\n2023\nIntroducción al modelado de datos\n\nRegresión lineal y logística. Estimación, mínimos cuadrados, máxima verosimilitud. Interpretación y medidas de bondad de ajuste.\nNociones de aprendizaje automático (clasificación y regresión). Evaluación y sobre-ajuste. • Introducción a tidymodels.\n\n\n\nEANT\nData Science\nArgentina\n2019 - 2021\n\nCurso de data science con python y R. Introducción a modelos de regresión y clasificación (sklearn y caret).\nCurso de Data Analytics con python. Visualización de datos, NLP (topic modelling) y dashboards (dash)."
+  },
+  {
+    "objectID": "cv/cv.html#cursos-y-otros-proyectos",
+    "href": "cv/cv.html#cursos-y-otros-proyectos",
+    "title": "Karina Bartolomé",
+    "section": "Cursos y otros proyectos",
+    "text": "Cursos y otros proyectos\n\nDS4A: Data science for all\nCorrelation One\nAmérica Latina\n2020\nDS4A es un programa de Softbank para capacitar a las personas del mundo en data science.\nNuestro proyecto final del curso, Topic modelling sobre reseñas de empresas fintech, fue elegido como el mejor de Argentina.\n\n\nSitios Web\nBlogs que mantengo en mis tiempos libres\nGlobal\nActualidad - 2020\n\nBlog personal\nBlog de visualizaciones\n\n\n\nPaquetes\nParticipé en el desarrollo de 2 paquetes en R\nGlobal\n2021\n\n{shinymatic}: Generar automáticamente todos los shiny inputs necesarios para simular una observación a partir de un dataframe.\n{sknifedatar}: Una extensión del paquete modeltime, para el modelado de múltiples series temporales."
+  },
+  {
     "objectID": "cv/template_cv.html#contact",
     "href": "cv/template_cv.html#contact",
     "title": "[COMPLETAR NOMBRE]",
@@ -96,68 +152,5 @@
     "title": "Uso del subte en la Ciudad Autónoma de Buenos Aires",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nWickham (2016)↩︎\nIannone, Cheng, and Schloerke (2021)↩︎\nWickham et al. (2019)↩︎"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About me",
-    "section": "",
-    "text": "Hola! 👋\nSoy Economista (UNLP) y especialista en Métodos Cuantitativos para la gestión y análisis de datos en organizaciones (UBA). Actualmente me encuentro finalizando la maestría (UBA). Comencé mi carrera en ciencia de datos en el 2018, desempeñándome como Data Scientist en una fintech argentina (Ualá), en donde continúo trabajando como Data Science Tech Lead. Anteriormente trabajé en consultoría financiera en Oracle.\nRegularmente publico posts vinculados a ciencia de datos: visualización, machine learning, entre otras cosas.\n➡️ Si te interesa que colaboremos en algún proyecto open source podes contactarme en cualquiera de mis redes."
-  },
-  {
-    "objectID": "cv/cv.html#contact",
-    "href": "cv/cv.html#contact",
-    "title": "Karina Bartolomé",
-    "section": "Contacto",
-    "text": "Contacto\n karinabartolome   karbartolome"
-  },
-  {
-    "objectID": "cv/cv.html#skills",
-    "href": "cv/cv.html#skills",
-    "title": "Karina Bartolomé",
-    "section": "Skills",
-    "text": "Skills\n\nEconomía / Estadística\nMachine learning / Optimización\nOpen source: R, python, git/github / MLFlow / Optuna\nOtros: GCP / AWS"
-  },
-  {
-    "objectID": "cv/cv.html#disclaimer",
-    "href": "cv/cv.html#disclaimer",
-    "title": "Karina Bartolomé",
-    "section": "Disclaimer",
-    "text": "Disclaimer\nÚltima actualización: 2026-09-05."
-  },
-  {
-    "objectID": "cv/cv.html#title",
-    "href": "cv/cv.html#title",
-    "title": "Karina Bartolomé",
-    "section": "Karina Bartolomé",
-    "text": "Karina Bartolomé\n\nEconomista | Data Scientist\nSoy Economista graduada en la Universidad Nacional de La Plata. Cuento con una especialización en métodos cuantitativos (UBA) y actualmente me encuentro finalizando la tesis de la maestría. Comencé mi carrera en ciencia de datos en el 2019, desempeñándome como data scientist en una fintech argentina (Ualá), en donde continúo trabajando como líder técnica de proyectos de machine learning."
-  },
-  {
-    "objectID": "cv/cv.html#educación",
-    "href": "cv/cv.html#educación",
-    "title": "Karina Bartolomé",
-    "section": "Educación",
-    "text": "Educación\n\nUniversidad de Buenos Aires (UBA)\nMaestría en métodos cuantitativos para la gestión y análisis de datos en organizaciones\nArgentina\nEn curso - 2024\n\n\nUniversidad de Buenos Aires (UBA)\nEspecialización en métodos cuantitativos para la gestión y análisis de datos en organizaciones\nArgentina\n2021\n\n\nUniversidad de La Plata (UNLP)\nLicenciatura en Economía\nArgentina\n2017"
-  },
-  {
-    "objectID": "cv/cv.html#experiencia-laboral",
-    "href": "cv/cv.html#experiencia-laboral",
-    "title": "Karina Bartolomé",
-    "section": "Experiencia laboral",
-    "text": "Experiencia laboral\n\nData Science Tech Lead\nUalá\nArgentina\n2022 - 2023\n\nCoordinación de proyectos de machine learning dentro del área de data science.\nHerramientas: python, SQL, GCP, GitHub\n\n\n\nData Scientist Sr\nUalá\nArgentina\n2021 - 2022\n\nDesarrollo de modelos de scoring crediticio, detección de fraude, entre otros. Principalmente en python\nUso de herramientas de GCP para procesamiento de datos y modelado.\nHerramientas: R, python, SQL, GCP, GitHub\n\n\n\nData Scientist Ssr\nUalá\nArgentina\n2019 - 2023\n\nInicio del área de data science en Ualá\nModelos de clasificaicón de texto con enfoques supervisados y no supervisado.\nSegmentación de la cartera de clientes (clustering)\nHerramientas: R, python, SQL, AWS, GitHub\n\n\n\nConsultora en finanzas\nOracle\nArgentina\n2018 - 2019\n\nConsultoría en finanzas de empresas durante la implementación del ERP NetSuite\nReportes personalizados (SQL)"
-  },
-  {
-    "objectID": "cv/cv.html#enseñanza",
-    "href": "cv/cv.html#enseñanza",
-    "title": "Karina Bartolomé",
-    "section": "Enseñanza",
-    "text": "Enseñanza\n\nUniversidad de Buenos Aires (UBA - FCE)\nMaestría en gestión y análisis de datos financieros\nArgentina\n2024 - Actualidad\nTaller de programación\n\nIntroducción a conceptos de programación en python para el análisis de datos.\n\n\n\nUniversidad de San Martin (UNSAM)\nDiplomatura en ciencias sociales computacionales y humanidades digitales\nArgentina\n2023\nIntroducción al modelado de datos\n\nRegresión lineal y logística. Estimación, mínimos cuadrados, máxima verosimilitud. Interpretación y medidas de bondad de ajuste.\nNociones de aprendizaje automático (clasificación y regresión). Evaluación y sobre-ajuste. • Introducción a tidymodels.\n\n\n\nEANT\nData Science\nArgentina\n2019 - 2021\n\nCurso de data science con python y R. Introducción a modelos de regresión y clasificación (sklearn y caret).\nCurso de Data Analytics con python. Visualización de datos, NLP (topic modelling) y dashboards (dash)."
-  },
-  {
-    "objectID": "cv/cv.html#cursos-y-otros-proyectos",
-    "href": "cv/cv.html#cursos-y-otros-proyectos",
-    "title": "Karina Bartolomé",
-    "section": "Cursos y otros proyectos",
-    "text": "Cursos y otros proyectos\n\nDS4A: Data science for all\nCorrelation One\nAmérica Latina\n2020\nDS4A es un programa de Softbank para capacitar a las personas del mundo en data science.\nNuestro proyecto final del curso, Topic modelling sobre reseñas de empresas fintech, fue elegido como el mejor de Argentina.\n\n\nSitios Web\nBlogs que mantengo en mis tiempos libres\nGlobal\nActualidad - 2020\n\nBlog personal\nBlog de visualizaciones\n\n\n\nPaquetes\nParticipé en el desarrollo de 2 paquetes en R\nGlobal\n2021\n\n{shinymatic}: Generar automáticamente todos los shiny inputs necesarios para simular una observación a partir de un dataframe.\n{sknifedatar}: Una extensión del paquete modeltime, para el modelado de múltiples series temporales."
   }
 ]

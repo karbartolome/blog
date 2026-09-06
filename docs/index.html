@@ -97,6 +97,53 @@ ul.task-list li input[type="checkbox"] {
     }
   })
   </script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+	const searchContainer = document.querySelector('#quarto-search');
+	if (!searchContainer) return;
+
+	const input = document.createElement('input');
+	input.type = 'search';
+	input.placeholder = 'Search';
+	input.setAttribute('aria-label', 'Search blog posts');
+
+	const results = document.createElement('div');
+	results.className = 'blog-search-results';
+	searchContainer.replaceChildren(input, results);
+
+	const stylesheet = Array.from(document.querySelectorAll('link[rel="stylesheet"]'))
+		.find((link) => link.href.endsWith('/styles.css'));
+	const searchUrl = stylesheet
+		? new URL('search.json', new URL('.', stylesheet.href))
+		: new URL('search.json', document.baseURI);
+
+	let posts = [];
+	fetch(searchUrl)
+		.then((response) => response.json())
+		.then((items) => {
+			posts = items.filter((page) => page.href.startsWith('posts/'));
+		})
+		.catch(() => {
+			posts = [];
+		});
+
+	input.addEventListener('input', () => {
+		const query = input.value.trim().toLowerCase();
+		results.replaceChildren();
+		if (query.length < 2) return;
+
+		posts
+			.filter((page) => `${page.title} ${page.section} ${page.text}`.toLowerCase().includes(query))
+			.slice(0, 6)
+			.forEach((page) => {
+				const link = document.createElement('a');
+				link.href = new URL(page.href, searchUrl).href;
+				link.textContent = page.section ? `${page.title} - ${page.section}` : page.title;
+				results.appendChild(link);
+			});
+	});
+});
+</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>

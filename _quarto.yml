@@ -4,6 +4,7 @@ project:
 
 website:
   title: "blog"
+  search: true
   navbar:
     right:
       - about.qmd
@@ -19,6 +20,7 @@ format:
   html:
     theme: cosmo
     css: styles.css
+    include-in-header: search-header.html
 
 
 
