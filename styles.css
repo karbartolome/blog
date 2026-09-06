@@ -1,1 +1,223 @@
-/* css styles */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Source+Code+Pro:wght@400;600&display=swap');
+
+:root {
+	--distill-ink: #27313a;
+	--distill-muted: #6b7780;
+	--distill-accent: #1f7a8c;
+	--distill-accent-dark: #155766;
+	--distill-rule: #d9e1e5;
+	--distill-code: #f4f6f7;
+	--distill-paper: #ffffff;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background: var(--distill-paper);
+	color: var(--distill-ink);
+	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+	line-height: 1.7;
+}
+
+#quarto-header {
+	border-bottom: 1px solid var(--distill-rule);
+}
+
+.navbar {
+	min-height: 62px;
+	background: var(--distill-paper);
+	font-size: 0.9rem;
+	letter-spacing: 0.02em;
+}
+
+.navbar-brand,
+.navbar .nav-link {
+	color: var(--distill-ink);
+}
+
+.navbar-brand {
+	font-weight: 900;
+	letter-spacing: 0;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar-brand:hover {
+	color: var(--distill-accent);
+}
+
+main#quarto-document-content {
+	width: auto;
+	max-width: none;
+	margin-left: 0;
+	margin-right: 0;
+	padding-bottom: 5rem;
+}
+
+.quarto-title-block {
+	margin-bottom: 2.5rem;
+}
+
+.quarto-title-banner {
+	background: var(--distill-paper);
+	border-bottom: 1px solid var(--distill-rule);
+}
+
+.quarto-title h1,
+.quarto-title-block .title {
+	color: var(--distill-ink);
+	font-size: clamp(2.2rem, 5vw, 3.5rem);
+	font-weight: 900;
+	letter-spacing: 0;
+	line-height: 1.1;
+	margin-bottom: 1rem;
+}
+
+.quarto-title-block .description,
+.quarto-title-block .subtitle {
+	color: var(--distill-muted);
+	font-size: 1.15rem;
+	line-height: 1.55;
+	max-width: 680px;
+}
+
+.quarto-title-meta,
+.quarto-title-meta-heading {
+	color: var(--distill-muted);
+	font-size: 0.82rem;
+}
+
+.quarto-title-meta-heading {
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--distill-ink);
+	font-weight: 900;
+	line-height: 1.25;
+}
+
+h2 {
+	border-bottom: 1px solid var(--distill-rule);
+	padding-bottom: 0.45rem;
+	margin-top: 3rem;
+}
+
+h3 {
+	margin-top: 2rem;
+}
+
+a {
+	color: var(--distill-accent);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.15em;
+}
+
+a:hover {
+	color: var(--distill-accent-dark);
+}
+
+blockquote {
+	border-left: 4px solid var(--distill-accent);
+	color: var(--distill-muted);
+	padding-left: 1.25rem;
+}
+
+figure {
+	margin: 2.25rem 0;
+}
+
+figure img,
+.figure-img {
+	height: auto;
+	max-width: 100%;
+}
+
+figcaption,
+.figure-caption {
+	color: var(--distill-muted);
+	font-size: 0.88rem;
+	line-height: 1.45;
+	margin-top: 0.65rem;
+	text-align: center;
+}
+
+pre,
+.sourceCode {
+	background: var(--distill-code);
+	border: 1px solid var(--distill-rule);
+	border-radius: 3px;
+}
+
+pre {
+	padding: 1rem 1.15rem;
+}
+
+code,
+pre,
+.sourceCode {
+	font-family: 'Source Code Pro', monospace;
+	font-size: 0.88rem;
+}
+
+code:not(pre code) {
+	background: var(--distill-code);
+	border-radius: 2px;
+	padding: 0.12em 0.3em;
+}
+
+.quarto-post {
+	border-bottom: 1px solid var(--distill-rule);
+	padding: 1.75rem 0;
+}
+
+.quarto-post .listing-title a {
+	color: var(--distill-ink);
+	text-decoration: none;
+}
+
+.quarto-post .listing-title a:hover {
+	color: var(--distill-accent);
+}
+
+.listing-subtitle,
+.listing-description,
+.listing-date,
+.listing-author {
+	color: var(--distill-muted);
+}
+
+.listing-category {
+	color: var(--distill-accent);
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+	#quarto-document-content {
+		width: auto;
+	}
+
+	.quarto-title h1,
+	.quarto-title-block .title {
+		font-size: 2.35rem;
+	}
+
+	pre {
+		margin-left: -0.5rem;
+		margin-right: -0.5rem;
+		overflow-x: auto;
+	}
+}

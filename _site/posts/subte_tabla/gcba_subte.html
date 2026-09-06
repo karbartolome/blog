@@ -125,9 +125,10 @@ div.csl-indent {
 
 
 <link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -175,7 +176,7 @@ div.csl-indent {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Uso del subte en la Ciudad Autónoma de Buenos Aires</h1>
@@ -210,8 +211,32 @@ div.csl-indent {
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#librerías" id="toc-librerías" class="nav-link" data-scroll-target="#librerías">1️⃣ Librerías</a></li>
+  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos">2️⃣ Datos</a></li>
+  <li><a href="#análisis-exploratorio-de-los-datos" id="toc-análisis-exploratorio-de-los-datos" class="nav-link" data-scroll-target="#análisis-exploratorio-de-los-datos">3️⃣ Análisis exploratorio de los datos</a></li>
+  <li><a href="#transformaciones-y-gráficos" id="toc-transformaciones-y-gráficos" class="nav-link" data-scroll-target="#transformaciones-y-gráficos">4️⃣ Transformaciones y gráficos</a>
+  <ul class="collapse">
+  <li><a href="#hora-de-uso-de-cada-línea-de-subte" id="toc-hora-de-uso-de-cada-línea-de-subte" class="nav-link" data-scroll-target="#hora-de-uso-de-cada-línea-de-subte">4.1 Hora de uso de cada línea de subte</a></li>
+  <li><a href="#estación-más-utilizada-por-línea" id="toc-estación-más-utilizada-por-línea" class="nav-link" data-scroll-target="#estación-más-utilizada-por-línea">4.2 Estación más utilizada por línea</a></li>
+  <li><a href="#mapa-de-de-estaciones-y-uso" id="toc-mapa-de-de-estaciones-y-uso" class="nav-link" data-scroll-target="#mapa-de-de-estaciones-y-uso">4.3 Mapa de de estaciones y uso</a></li>
+  </ul></li>
+  <li><a href="#datos-para-la-tabla" id="toc-datos-para-la-tabla" class="nav-link" data-scroll-target="#datos-para-la-tabla">5️⃣ Datos para la tabla</a></li>
+  <li><a href="#generación-de-la-tabla" id="toc-generación-de-la-tabla" class="nav-link" data-scroll-target="#generación-de-la-tabla">6️⃣ Generación de la tabla</a></li>
+  <li><a href="#guardar-la-tabla-nueva" id="toc-guardar-la-tabla-nueva" class="nav-link" data-scroll-target="#guardar-la-tabla-nueva">7️⃣ Guardar la tabla nueva</a></li>
+  <li><a href="#sessioninfo" id="toc-sessioninfo" class="nav-link" data-scroll-target="#sessioninfo">SessionInfo()</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
@@ -224,7 +249,10 @@ div.csl-indent {
 <p>El paquete <strong>{ggplot2}</strong> 📦<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> es uno de los paquetes más utilizados para la visualización de datos en R. Está basado en <strong>the Grammar of Graphics</strong>, <span class="citation" data-cites="wilkinson2012grammar">Wilkinson (<a href="#ref-wilkinson2012grammar" role="doc-biblioref">2012</a>)</span>, y permite generar gráficos mediante capas. Por otro lado, <strong>the Grammar of Tables {gt}</strong> 📦 <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> se utiliza para generar tablas con una estructura similar a la de {ggplot2}, utilizando capas. Ambos enfoques pueden combinarse generando tablas que incluyen gráficos. En este caso, armé un ejemplo con datos provistos por el portal de datos abiertos de la Ciudad Autónoma de Buenos Aires. La idea de este post surgió de una <a href="https://twitter.com/BjnNowak/status/1472562727684124688">publicación de Benjamin Nowak en Twitter</a>.</p>
 <p>En este post se muestran los pasos para generar la siguiente tabla:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">'tabla_subtes.png'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -235,7 +263,10 @@ div.csl-indent {
 </div>
 <p>The grammar of tables se basa en la siguiente estructura:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">'images/gt_workflow_diagram.svg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -247,7 +278,10 @@ div.csl-indent {
 </div>
 <p>En donde las tablas tienen un formato específico, generado mediante capas:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">'images/gt_parts_of_a_table.svg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -262,6 +296,8 @@ div.csl-indent {
 <h1>1️⃣ Librerías</h1>
 <p>Se cargan las librerías a utilizar. Principalmente se utilizarán <strong>{ggplot2}</strong>, incluida en el ecosistema <strong>Tidyverse</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, y <strong>{gt}</strong>.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Manipulación de datos</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)  <span class="co"># Manipulación de fechas</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(circular) <span class="co"># Datos periódicos</span></span>
@@ -275,12 +311,15 @@ div.csl-indent {
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>conflicted<span class="sc">::</span><span class="fu">conflict_prefer</span>(<span class="st">"select"</span>, <span class="st">"dplyr"</span>)</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen=</span><span class="dv">999</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="datos" class="level1">
 <h1>2️⃣ Datos</h1>
 <p>Se importan los datos de <a href="https://data.buenosaires.gob.ar/dataset/subte-viajes-molinetes">viajes en subte de la Ciudad Autónoma de Buenos Aires</a>, en Noviembre 2021.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">=</span> <span class="st">'https://cdn.buenosaires.gob.ar/datosabiertos/datasets/sbase/subte-viajes-molinetes/'</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mes_url  <span class="ot">=</span> <span class="st">'molinetes_112021.csv'</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -317,9 +356,12 @@ div.csl-indent {
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Selección de variables relevantes</span></span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(linea, color, fecha, desde, hasta, hora, linea, molinete, estacion, </span>
 <span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>         pax_pagos, pax_pases_pagos, pax_franq, pax_total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Se obtienen los datos del mes anterior para generar comparaciones:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mes_url <span class="ot">=</span> <span class="st">'molinetes_102021.csv'</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_oct <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(</span>
@@ -338,11 +380,14 @@ div.csl-indent {
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Se asigna el color correspondiente a cada línea</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">linea=</span><span class="fu">str_replace</span>(linea, <span class="st">'Linea'</span>,<span class="st">''</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="análisis-exploratorio-de-los-datos" class="level1 page-columns page-full">
 <h1>3️⃣ Análisis exploratorio de los datos</h1>
 <div class="cell page-columns page-full">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>color) <span class="sc">%&gt;%</span> </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
@@ -354,25 +399,26 @@ div.csl-indent {
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="at">locations=</span><span class="fu">cells_column_labels</span>(<span class="at">columns=</span>molinete),</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>               <span class="st">'Se ignorará el molinete específico y se considerarán </span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="st">               los datos agregados a nivel estación'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display column-page">
 <div>
-<div id="tvnuyydkpx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tvnuyydkpx table {
+<div id="ukacdwunig" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ukacdwunig table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tvnuyydkpx thead, #tvnuyydkpx tbody, #tvnuyydkpx tfoot, #tvnuyydkpx tr, #tvnuyydkpx td, #tvnuyydkpx th {
+#ukacdwunig thead, #ukacdwunig tbody, #ukacdwunig tfoot, #ukacdwunig tr, #ukacdwunig td, #ukacdwunig th {
   border-style: none;
 }
 
-#tvnuyydkpx p {
+#ukacdwunig p {
   margin: 0;
   padding: 0;
 }
 
-#tvnuyydkpx .gt_table {
+#ukacdwunig .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -398,12 +444,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#tvnuyydkpx .gt_caption {
+#ukacdwunig .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tvnuyydkpx .gt_title {
+#ukacdwunig .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -415,7 +461,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#tvnuyydkpx .gt_subtitle {
+#ukacdwunig .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -427,7 +473,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#tvnuyydkpx .gt_heading {
+#ukacdwunig .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -439,13 +485,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tvnuyydkpx .gt_bottom_border {
+#ukacdwunig .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tvnuyydkpx .gt_col_headings {
+#ukacdwunig .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -460,7 +506,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tvnuyydkpx .gt_col_heading {
+#ukacdwunig .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -480,7 +526,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#tvnuyydkpx .gt_column_spanner_outer {
+#ukacdwunig .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -492,15 +538,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#tvnuyydkpx .gt_column_spanner_outer:first-child {
+#ukacdwunig .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tvnuyydkpx .gt_column_spanner_outer:last-child {
+#ukacdwunig .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tvnuyydkpx .gt_column_spanner {
+#ukacdwunig .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -512,11 +558,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#tvnuyydkpx .gt_spanner_row {
+#ukacdwunig .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tvnuyydkpx .gt_group_heading {
+#ukacdwunig .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -542,7 +588,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#tvnuyydkpx .gt_empty_group_heading {
+#ukacdwunig .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -557,15 +603,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#tvnuyydkpx .gt_from_md > :first-child {
+#ukacdwunig .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tvnuyydkpx .gt_from_md > :last-child {
+#ukacdwunig .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tvnuyydkpx .gt_row {
+#ukacdwunig .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -584,7 +630,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#tvnuyydkpx .gt_stub {
+#ukacdwunig .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -597,7 +643,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tvnuyydkpx .gt_stub_row_group {
+#ukacdwunig .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -611,15 +657,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#tvnuyydkpx .gt_row_group_first td {
+#ukacdwunig .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tvnuyydkpx .gt_row_group_first th {
+#ukacdwunig .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tvnuyydkpx .gt_summary_row {
+#ukacdwunig .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -629,16 +675,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tvnuyydkpx .gt_first_summary_row {
+#ukacdwunig .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tvnuyydkpx .gt_first_summary_row.thick {
+#ukacdwunig .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tvnuyydkpx .gt_last_summary_row {
+#ukacdwunig .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -648,7 +694,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#tvnuyydkpx .gt_grand_summary_row {
+#ukacdwunig .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -658,7 +704,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tvnuyydkpx .gt_first_grand_summary_row {
+#ukacdwunig .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -668,7 +714,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#tvnuyydkpx .gt_last_grand_summary_row_top {
+#ukacdwunig .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -678,11 +724,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#tvnuyydkpx .gt_striped {
+#ukacdwunig .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tvnuyydkpx .gt_table_body {
+#ukacdwunig .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -691,7 +737,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#tvnuyydkpx .gt_footnotes {
+#ukacdwunig .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -705,7 +751,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tvnuyydkpx .gt_footnote {
+#ukacdwunig .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -714,7 +760,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tvnuyydkpx .gt_sourcenotes {
+#ukacdwunig .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -728,7 +774,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tvnuyydkpx .gt_sourcenote {
+#ukacdwunig .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -736,72 +782,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tvnuyydkpx .gt_left {
+#ukacdwunig .gt_left {
   text-align: left;
 }
 
-#tvnuyydkpx .gt_center {
+#ukacdwunig .gt_center {
   text-align: center;
 }
 
-#tvnuyydkpx .gt_right {
+#ukacdwunig .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tvnuyydkpx .gt_font_normal {
+#ukacdwunig .gt_font_normal {
   font-weight: normal;
 }
 
-#tvnuyydkpx .gt_font_bold {
+#ukacdwunig .gt_font_bold {
   font-weight: bold;
 }
 
-#tvnuyydkpx .gt_font_italic {
+#ukacdwunig .gt_font_italic {
   font-style: italic;
 }
 
-#tvnuyydkpx .gt_super {
+#ukacdwunig .gt_super {
   font-size: 65%;
 }
 
-#tvnuyydkpx .gt_footnote_marks {
+#ukacdwunig .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tvnuyydkpx .gt_asterisk {
+#ukacdwunig .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tvnuyydkpx .gt_indent_1 {
+#ukacdwunig .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tvnuyydkpx .gt_indent_2 {
+#ukacdwunig .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tvnuyydkpx .gt_indent_3 {
+#ukacdwunig .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tvnuyydkpx .gt_indent_4 {
+#ukacdwunig .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tvnuyydkpx .gt_indent_5 {
+#ukacdwunig .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tvnuyydkpx .katex-display {
+#ukacdwunig .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tvnuyydkpx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ukacdwunig div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -908,6 +954,8 @@ div.csl-indent {
 </div>
 <p>Se observa la distribución de pasajeros por hora. La cantidad total de pasajeros difiere entre líneas.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(linea, color, hora) <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pax_total=</span><span class="fu">sum</span>(pax_total)) <span class="sc">%&gt;%</span></span>
@@ -924,10 +972,11 @@ div.csl-indent {
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">'Cantidad de pasarjeros por hora por línea'</span>,</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">'Noviembre 2021'</span>,</span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">'Fuente: Elaboración propia en base a datos del portal de datos abiertos de la Ciudad de Buenos Aires'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="gcba_subte_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="gcba_subte_files/figure-html/plot-passengers-by-hour-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Pasajeros por hora, Noviembre 2021</figcaption>
 </figure>
 </div>
@@ -941,6 +990,8 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="hora-de-uso-de-cada-línea-de-subte">4.1 Hora de uso de cada línea de subte</h2>
 <p>Función para obtener la hora promedio:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>get_hour <span class="ot">&lt;-</span> <span class="cf">function</span>(.linea, .df) {</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> .df <span class="sc">%&gt;%</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(linea <span class="sc">==</span> .linea) <span class="sc">%&gt;%</span></span>
@@ -956,9 +1007,12 @@ div.csl-indent {
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(hora) <span class="sc">%%</span> <span class="dv">24</span></span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Función para generar un gráfico circular de la cantidad de pasajeros por hora por línea de subte:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plot_clock <span class="ot">&lt;-</span> <span class="cf">function</span>(.linea, .df, <span class="at">.color =</span> <span class="st">'black'</span>, .hora_promedio) {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">hora =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">23</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(</span>
@@ -1002,15 +1056,19 @@ div.csl-indent {
 <span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">25</span>, <span class="at">color =</span> <span class="st">'grey'</span>),</span>
 <span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span>
 <span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Test de la función</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_clock</span>(<span class="at">.df=</span>df, <span class="at">.linea=</span><span class="st">'B'</span>, <span class="at">.color=</span><span class="st">'red'</span>,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">.hora_promedio=</span><span class="fu">get_hour</span>(<span class="at">.linea=</span><span class="st">'B'</span>,<span class="at">.df=</span>df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gcba_subte_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="gcba_subte_files/figure-html/test-plot-clock-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1019,17 +1077,22 @@ div.csl-indent {
 <section id="estación-más-utilizada-por-línea" class="level2">
 <h2 class="anchored" data-anchor-id="estación-más-utilizada-por-línea">4.2 Estación más utilizada por línea</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>estacion_mas_usada <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(linea, <span class="at">estacion_mas_usada =</span> estacion) <span class="sc">%&gt;%</span> </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pax_total =</span> <span class="fu">sum</span>(pax_total)) <span class="sc">%&gt;%</span> </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(linea) <span class="sc">%&gt;%</span> </span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">which.max</span>(pax_total)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="mapa-de-de-estaciones-y-uso" class="level2">
 <h2 class="anchored" data-anchor-id="mapa-de-de-estaciones-y-uso">4.3 Mapa de de estaciones y uso</h2>
 <p>Se cargan los datos del geojson de barrios de la Ciudad Autónoma de Buenos Aires:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapa barrios CABA</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>caba <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">'http://cdn.buenosaires.gob.ar/datosabiertos/datasets/barrios/barrios.geojson'</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">barrio=</span><span class="fu">str_to_title</span>(BARRIO))</span>
@@ -1043,16 +1106,19 @@ div.csl-indent {
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>mapa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gcba_subte_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="gcba_subte_files/figure-html/map-neighborhoods-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Se incluyen los datos de latitud y longitud de cada estación:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>PATH_ESTACIONES_SIMPLE <span class="ot">=</span> <span class="st">"https://cdn.buenosaires.gob.ar/datosabiertos/datasets/sbase/subte-estaciones/estaciones-de-subte.csv"</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>estaciones_simple <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_delim</span>(PATH_ESTACIONES_SIMPLE, <span class="at">delim=</span><span class="st">';'</span>,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">decimal_mark =</span> <span class="st">","</span>)) <span class="sc">%&gt;%</span> </span>
@@ -1105,9 +1171,12 @@ div.csl-indent {
 <span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(estaciones, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"linea"</span> <span class="ot">=</span> <span class="st">"linea"</span>, <span class="st">"estacion"</span> <span class="ot">=</span> <span class="st">"estacion"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Mapa de todas las estaciones juntas:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>lbreaks <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">quantile</span>(df_pasajeros_estaciones<span class="sc">$</span>pax_total, </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>,<span class="dv">1</span>)),<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.numeric</span>()</span>
@@ -1133,16 +1202,19 @@ div.csl-indent {
 <span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">''</span>,<span class="at">y=</span><span class="st">''</span>,<span class="at">size=</span><span class="st">'Pasajeros'</span>, <span class="at">fill=</span><span class="st">'Línea'</span>, </span>
 <span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">title=</span><span class="st">'Cantidad de pasajeros totales por línea, por estación'</span>,</span>
 <span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle=</span><span class="st">'Noviembre 2021'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="gcba_subte_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="gcba_subte_files/figure-html/plot-all-stations-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Estaciones individuales para la tabla:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plot_mapa <span class="ot">&lt;-</span> <span class="cf">function</span>(.df, .linea){</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>   temp <span class="ot">&lt;-</span> .df <span class="sc">%&gt;%</span> </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(linea<span class="sc">==</span>.linea) <span class="sc">%&gt;%</span> </span>
@@ -1170,6 +1242,7 @@ div.csl-indent {
 <span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="st">"null"</span>))<span class="sc">+</span></span>
 <span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">''</span>,<span class="at">y=</span><span class="st">''</span>,<span class="at">size=</span><span class="st">''</span>)</span>
 <span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 </section>
@@ -1177,12 +1250,17 @@ div.csl-indent {
 <h1>5️⃣ Datos para la tabla</h1>
 <p>Cantidad de pasajeros por estación en Octubre 2021:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_pasajeros_mesprevio <span class="ot">&lt;-</span> df_oct <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(linea) <span class="sc">%&gt;%</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pax_total_oct =</span> <span class="fu">sum</span>(pax_total)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Se genera el tibble que contiene los datos para luego generar la tabla:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>datos_tabla <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">linea =</span> <span class="fu">sort</span>(<span class="fu">unique</span>(df<span class="sc">$</span>linea))) <span class="sc">%&gt;%</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Recorridos</span></span>
@@ -1282,6 +1360,7 @@ div.csl-indent {
 <span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Estación más utilizada por línea</span></span>
 <span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(estacion_mas_usada <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>pax_total))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="generación-de-la-tabla" class="level1 page-columns page-full">
@@ -1309,27 +1388,30 @@ div.csl-indent {
 </div>
 <p>De momento se centrará el análisis en las columnas con datos simples, sin considerar las que incluyen gráficos.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="sc">%&gt;%</span>  </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_hide</span>(<span class="at">columns =</span> <span class="fu">c</span>(pasajeros_tipo, linea_imagen, mapa, reloj_plot, evolucion_plot)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
-<div id="ektoubgoes" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ektoubgoes table {
+<div id="dnpvgjvmln" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dnpvgjvmln table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ektoubgoes thead, #ektoubgoes tbody, #ektoubgoes tfoot, #ektoubgoes tr, #ektoubgoes td, #ektoubgoes th {
+#dnpvgjvmln thead, #dnpvgjvmln tbody, #dnpvgjvmln tfoot, #dnpvgjvmln tr, #dnpvgjvmln td, #dnpvgjvmln th {
   border-style: none;
 }
 
-#ektoubgoes p {
+#dnpvgjvmln p {
   margin: 0;
   padding: 0;
 }
 
-#ektoubgoes .gt_table {
+#dnpvgjvmln .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1355,12 +1437,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#ektoubgoes .gt_caption {
+#dnpvgjvmln .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ektoubgoes .gt_title {
+#dnpvgjvmln .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1372,7 +1454,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#ektoubgoes .gt_subtitle {
+#dnpvgjvmln .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1384,7 +1466,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#ektoubgoes .gt_heading {
+#dnpvgjvmln .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1396,13 +1478,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ektoubgoes .gt_bottom_border {
+#dnpvgjvmln .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ektoubgoes .gt_col_headings {
+#dnpvgjvmln .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1417,7 +1499,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ektoubgoes .gt_col_heading {
+#dnpvgjvmln .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1437,7 +1519,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ektoubgoes .gt_column_spanner_outer {
+#dnpvgjvmln .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1449,15 +1531,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#ektoubgoes .gt_column_spanner_outer:first-child {
+#dnpvgjvmln .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ektoubgoes .gt_column_spanner_outer:last-child {
+#dnpvgjvmln .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ektoubgoes .gt_column_spanner {
+#dnpvgjvmln .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1469,11 +1551,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#ektoubgoes .gt_spanner_row {
+#dnpvgjvmln .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ektoubgoes .gt_group_heading {
+#dnpvgjvmln .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1499,7 +1581,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#ektoubgoes .gt_empty_group_heading {
+#dnpvgjvmln .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1514,15 +1596,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#ektoubgoes .gt_from_md > :first-child {
+#dnpvgjvmln .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ektoubgoes .gt_from_md > :last-child {
+#dnpvgjvmln .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ektoubgoes .gt_row {
+#dnpvgjvmln .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1541,7 +1623,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ektoubgoes .gt_stub {
+#dnpvgjvmln .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1554,7 +1636,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ektoubgoes .gt_stub_row_group {
+#dnpvgjvmln .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1568,15 +1650,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#ektoubgoes .gt_row_group_first td {
+#dnpvgjvmln .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ektoubgoes .gt_row_group_first th {
+#dnpvgjvmln .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ektoubgoes .gt_summary_row {
+#dnpvgjvmln .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1586,16 +1668,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ektoubgoes .gt_first_summary_row {
+#dnpvgjvmln .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ektoubgoes .gt_first_summary_row.thick {
+#dnpvgjvmln .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ektoubgoes .gt_last_summary_row {
+#dnpvgjvmln .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1605,7 +1687,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ektoubgoes .gt_grand_summary_row {
+#dnpvgjvmln .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1615,7 +1697,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ektoubgoes .gt_first_grand_summary_row {
+#dnpvgjvmln .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1625,7 +1707,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#ektoubgoes .gt_last_grand_summary_row_top {
+#dnpvgjvmln .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1635,11 +1717,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ektoubgoes .gt_striped {
+#dnpvgjvmln .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ektoubgoes .gt_table_body {
+#dnpvgjvmln .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1648,7 +1730,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ektoubgoes .gt_footnotes {
+#dnpvgjvmln .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1662,7 +1744,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ektoubgoes .gt_footnote {
+#dnpvgjvmln .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1671,7 +1753,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ektoubgoes .gt_sourcenotes {
+#dnpvgjvmln .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1685,7 +1767,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ektoubgoes .gt_sourcenote {
+#dnpvgjvmln .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1693,72 +1775,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ektoubgoes .gt_left {
+#dnpvgjvmln .gt_left {
   text-align: left;
 }
 
-#ektoubgoes .gt_center {
+#dnpvgjvmln .gt_center {
   text-align: center;
 }
 
-#ektoubgoes .gt_right {
+#dnpvgjvmln .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ektoubgoes .gt_font_normal {
+#dnpvgjvmln .gt_font_normal {
   font-weight: normal;
 }
 
-#ektoubgoes .gt_font_bold {
+#dnpvgjvmln .gt_font_bold {
   font-weight: bold;
 }
 
-#ektoubgoes .gt_font_italic {
+#dnpvgjvmln .gt_font_italic {
   font-style: italic;
 }
 
-#ektoubgoes .gt_super {
+#dnpvgjvmln .gt_super {
   font-size: 65%;
 }
 
-#ektoubgoes .gt_footnote_marks {
+#dnpvgjvmln .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ektoubgoes .gt_asterisk {
+#dnpvgjvmln .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ektoubgoes .gt_indent_1 {
+#dnpvgjvmln .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ektoubgoes .gt_indent_2 {
+#dnpvgjvmln .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ektoubgoes .gt_indent_3 {
+#dnpvgjvmln .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ektoubgoes .gt_indent_4 {
+#dnpvgjvmln .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ektoubgoes .gt_indent_5 {
+#dnpvgjvmln .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ektoubgoes .katex-display {
+#dnpvgjvmln .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ektoubgoes div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#dnpvgjvmln div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1871,29 +1953,32 @@ div.csl-indent {
 </div>
 <p>Excluyendo las columnas de gráficos, el formato de la tabla actual es el siguiente:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="sc">%&gt;%</span>  </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_hide</span>(<span class="at">columns =</span> <span class="fu">c</span>(pasajeros_tipo, linea_imagen, mapa, reloj_plot, evolucion_plot))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
-<div id="xfhsytfhgm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="lpsqshqiym" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#xfhsytfhgm table {
+#lpsqshqiym table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xfhsytfhgm thead, #xfhsytfhgm tbody, #xfhsytfhgm tfoot, #xfhsytfhgm tr, #xfhsytfhgm td, #xfhsytfhgm th {
+#lpsqshqiym thead, #lpsqshqiym tbody, #lpsqshqiym tfoot, #lpsqshqiym tr, #lpsqshqiym td, #lpsqshqiym th {
   border-style: none;
 }
 
-#xfhsytfhgm p {
+#lpsqshqiym p {
   margin: 0;
   padding: 0;
 }
 
-#xfhsytfhgm .gt_table {
+#lpsqshqiym .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1919,12 +2004,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#xfhsytfhgm .gt_caption {
+#lpsqshqiym .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xfhsytfhgm .gt_title {
+#lpsqshqiym .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1936,7 +2021,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#xfhsytfhgm .gt_subtitle {
+#lpsqshqiym .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1948,7 +2033,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#xfhsytfhgm .gt_heading {
+#lpsqshqiym .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -1960,13 +2045,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#xfhsytfhgm .gt_bottom_border {
+#lpsqshqiym .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xfhsytfhgm .gt_col_headings {
+#lpsqshqiym .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1981,7 +2066,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#xfhsytfhgm .gt_col_heading {
+#lpsqshqiym .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2001,7 +2086,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#xfhsytfhgm .gt_column_spanner_outer {
+#lpsqshqiym .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2013,15 +2098,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#xfhsytfhgm .gt_column_spanner_outer:first-child {
+#lpsqshqiym .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xfhsytfhgm .gt_column_spanner_outer:last-child {
+#lpsqshqiym .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xfhsytfhgm .gt_column_spanner {
+#lpsqshqiym .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2033,11 +2118,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#xfhsytfhgm .gt_spanner_row {
+#lpsqshqiym .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xfhsytfhgm .gt_group_heading {
+#lpsqshqiym .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2063,7 +2148,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#xfhsytfhgm .gt_empty_group_heading {
+#lpsqshqiym .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2078,15 +2163,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#xfhsytfhgm .gt_from_md > :first-child {
+#lpsqshqiym .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xfhsytfhgm .gt_from_md > :last-child {
+#lpsqshqiym .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xfhsytfhgm .gt_row {
+#lpsqshqiym .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2105,7 +2190,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#xfhsytfhgm .gt_stub {
+#lpsqshqiym .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2118,7 +2203,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#xfhsytfhgm .gt_stub_row_group {
+#lpsqshqiym .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2132,15 +2217,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#xfhsytfhgm .gt_row_group_first td {
+#lpsqshqiym .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xfhsytfhgm .gt_row_group_first th {
+#lpsqshqiym .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xfhsytfhgm .gt_summary_row {
+#lpsqshqiym .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2150,16 +2235,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#xfhsytfhgm .gt_first_summary_row {
+#lpsqshqiym .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xfhsytfhgm .gt_first_summary_row.thick {
+#lpsqshqiym .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xfhsytfhgm .gt_last_summary_row {
+#lpsqshqiym .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2169,7 +2254,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#xfhsytfhgm .gt_grand_summary_row {
+#lpsqshqiym .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2179,7 +2264,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#xfhsytfhgm .gt_first_grand_summary_row {
+#lpsqshqiym .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2189,7 +2274,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#xfhsytfhgm .gt_last_grand_summary_row_top {
+#lpsqshqiym .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2199,11 +2284,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#xfhsytfhgm .gt_striped {
+#lpsqshqiym .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xfhsytfhgm .gt_table_body {
+#lpsqshqiym .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2212,7 +2297,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#xfhsytfhgm .gt_footnotes {
+#lpsqshqiym .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2226,7 +2311,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#xfhsytfhgm .gt_footnote {
+#lpsqshqiym .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2235,7 +2320,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#xfhsytfhgm .gt_sourcenotes {
+#lpsqshqiym .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2249,7 +2334,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#xfhsytfhgm .gt_sourcenote {
+#lpsqshqiym .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2257,72 +2342,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#xfhsytfhgm .gt_left {
+#lpsqshqiym .gt_left {
   text-align: left;
 }
 
-#xfhsytfhgm .gt_center {
+#lpsqshqiym .gt_center {
   text-align: center;
 }
 
-#xfhsytfhgm .gt_right {
+#lpsqshqiym .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xfhsytfhgm .gt_font_normal {
+#lpsqshqiym .gt_font_normal {
   font-weight: normal;
 }
 
-#xfhsytfhgm .gt_font_bold {
+#lpsqshqiym .gt_font_bold {
   font-weight: bold;
 }
 
-#xfhsytfhgm .gt_font_italic {
+#lpsqshqiym .gt_font_italic {
   font-style: italic;
 }
 
-#xfhsytfhgm .gt_super {
+#lpsqshqiym .gt_super {
   font-size: 65%;
 }
 
-#xfhsytfhgm .gt_footnote_marks {
+#lpsqshqiym .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xfhsytfhgm .gt_asterisk {
+#lpsqshqiym .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xfhsytfhgm .gt_indent_1 {
+#lpsqshqiym .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xfhsytfhgm .gt_indent_2 {
+#lpsqshqiym .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xfhsytfhgm .gt_indent_3 {
+#lpsqshqiym .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xfhsytfhgm .gt_indent_4 {
+#lpsqshqiym .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xfhsytfhgm .gt_indent_5 {
+#lpsqshqiym .gt_indent_5 {
   text-indent: 25px;
 }
 
-#xfhsytfhgm .katex-display {
+#lpsqshqiym .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#xfhsytfhgm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lpsqshqiym div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2451,29 +2536,32 @@ div.csl-indent {
 <span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="sc">%&gt;%</span>  </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_hide</span>(<span class="at">columns =</span> <span class="fu">c</span>(pasajeros_tipo, linea_imagen, mapa, reloj_plot, evolucion_plot))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
-<div id="ygktwusvqd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="upbyvxpotm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#ygktwusvqd table {
+#upbyvxpotm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ygktwusvqd thead, #ygktwusvqd tbody, #ygktwusvqd tfoot, #ygktwusvqd tr, #ygktwusvqd td, #ygktwusvqd th {
+#upbyvxpotm thead, #upbyvxpotm tbody, #upbyvxpotm tfoot, #upbyvxpotm tr, #upbyvxpotm td, #upbyvxpotm th {
   border-style: none;
 }
 
-#ygktwusvqd p {
+#upbyvxpotm p {
   margin: 0;
   padding: 0;
 }
 
-#ygktwusvqd .gt_table {
+#upbyvxpotm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2499,12 +2587,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#ygktwusvqd .gt_caption {
+#upbyvxpotm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ygktwusvqd .gt_title {
+#upbyvxpotm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2516,7 +2604,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#ygktwusvqd .gt_subtitle {
+#upbyvxpotm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2528,7 +2616,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#ygktwusvqd .gt_heading {
+#upbyvxpotm .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -2540,13 +2628,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ygktwusvqd .gt_bottom_border {
+#upbyvxpotm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ygktwusvqd .gt_col_headings {
+#upbyvxpotm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2561,7 +2649,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ygktwusvqd .gt_col_heading {
+#upbyvxpotm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2581,7 +2669,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ygktwusvqd .gt_column_spanner_outer {
+#upbyvxpotm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2593,15 +2681,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#ygktwusvqd .gt_column_spanner_outer:first-child {
+#upbyvxpotm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ygktwusvqd .gt_column_spanner_outer:last-child {
+#upbyvxpotm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ygktwusvqd .gt_column_spanner {
+#upbyvxpotm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2613,11 +2701,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#ygktwusvqd .gt_spanner_row {
+#upbyvxpotm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ygktwusvqd .gt_group_heading {
+#upbyvxpotm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2643,7 +2731,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#ygktwusvqd .gt_empty_group_heading {
+#upbyvxpotm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2658,15 +2746,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#ygktwusvqd .gt_from_md > :first-child {
+#upbyvxpotm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ygktwusvqd .gt_from_md > :last-child {
+#upbyvxpotm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ygktwusvqd .gt_row {
+#upbyvxpotm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2685,7 +2773,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ygktwusvqd .gt_stub {
+#upbyvxpotm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2698,7 +2786,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ygktwusvqd .gt_stub_row_group {
+#upbyvxpotm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2712,15 +2800,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#ygktwusvqd .gt_row_group_first td {
+#upbyvxpotm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ygktwusvqd .gt_row_group_first th {
+#upbyvxpotm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ygktwusvqd .gt_summary_row {
+#upbyvxpotm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2730,16 +2818,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ygktwusvqd .gt_first_summary_row {
+#upbyvxpotm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ygktwusvqd .gt_first_summary_row.thick {
+#upbyvxpotm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ygktwusvqd .gt_last_summary_row {
+#upbyvxpotm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2749,7 +2837,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ygktwusvqd .gt_grand_summary_row {
+#upbyvxpotm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2759,7 +2847,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ygktwusvqd .gt_first_grand_summary_row {
+#upbyvxpotm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2769,7 +2857,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#ygktwusvqd .gt_last_grand_summary_row_top {
+#upbyvxpotm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2779,11 +2867,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ygktwusvqd .gt_striped {
+#upbyvxpotm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ygktwusvqd .gt_table_body {
+#upbyvxpotm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2792,7 +2880,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ygktwusvqd .gt_footnotes {
+#upbyvxpotm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2806,7 +2894,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ygktwusvqd .gt_footnote {
+#upbyvxpotm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2815,7 +2903,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ygktwusvqd .gt_sourcenotes {
+#upbyvxpotm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2829,7 +2917,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ygktwusvqd .gt_sourcenote {
+#upbyvxpotm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2837,72 +2925,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ygktwusvqd .gt_left {
+#upbyvxpotm .gt_left {
   text-align: left;
 }
 
-#ygktwusvqd .gt_center {
+#upbyvxpotm .gt_center {
   text-align: center;
 }
 
-#ygktwusvqd .gt_right {
+#upbyvxpotm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ygktwusvqd .gt_font_normal {
+#upbyvxpotm .gt_font_normal {
   font-weight: normal;
 }
 
-#ygktwusvqd .gt_font_bold {
+#upbyvxpotm .gt_font_bold {
   font-weight: bold;
 }
 
-#ygktwusvqd .gt_font_italic {
+#upbyvxpotm .gt_font_italic {
   font-style: italic;
 }
 
-#ygktwusvqd .gt_super {
+#upbyvxpotm .gt_super {
   font-size: 65%;
 }
 
-#ygktwusvqd .gt_footnote_marks {
+#upbyvxpotm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ygktwusvqd .gt_asterisk {
+#upbyvxpotm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ygktwusvqd .gt_indent_1 {
+#upbyvxpotm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ygktwusvqd .gt_indent_2 {
+#upbyvxpotm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ygktwusvqd .gt_indent_3 {
+#upbyvxpotm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ygktwusvqd .gt_indent_4 {
+#upbyvxpotm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ygktwusvqd .gt_indent_5 {
+#upbyvxpotm .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ygktwusvqd .katex-display {
+#upbyvxpotm .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ygktwusvqd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#upbyvxpotm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3005,6 +3093,8 @@ Cantidad de pasajeros
 </div>
 <p>Se transforma el color del texto de recorrido según la línea:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> tabla <span class="sc">%&gt;%</span> </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Colores de los textos</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
@@ -3044,31 +3134,35 @@ Cantidad de pasajeros
 <span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fondo gris en el recorrido</span></span>
 <span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="at">style     =</span> <span class="fu">list</span>(<span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">"#f0f0f0"</span>)),</span>
 <span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">'recorrido'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="sc">%&gt;%</span>  </span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_hide</span>(<span class="at">columns =</span> <span class="fu">c</span>(pasajeros_tipo, mapa, reloj_plot, evolucion_plot))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
-<div id="pixujilnrg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="fcydhpnwma" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#pixujilnrg table {
+#fcydhpnwma table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pixujilnrg thead, #pixujilnrg tbody, #pixujilnrg tfoot, #pixujilnrg tr, #pixujilnrg td, #pixujilnrg th {
+#fcydhpnwma thead, #fcydhpnwma tbody, #fcydhpnwma tfoot, #fcydhpnwma tr, #fcydhpnwma td, #fcydhpnwma th {
   border-style: none;
 }
 
-#pixujilnrg p {
+#fcydhpnwma p {
   margin: 0;
   padding: 0;
 }
 
-#pixujilnrg .gt_table {
+#fcydhpnwma .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3094,12 +3188,12 @@ Cantidad de pasajeros
   border-left-color: #D3D3D3;
 }
 
-#pixujilnrg .gt_caption {
+#fcydhpnwma .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pixujilnrg .gt_title {
+#fcydhpnwma .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3111,7 +3205,7 @@ Cantidad de pasajeros
   border-bottom-width: 0;
 }
 
-#pixujilnrg .gt_subtitle {
+#fcydhpnwma .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3123,7 +3217,7 @@ Cantidad de pasajeros
   border-top-width: 0;
 }
 
-#pixujilnrg .gt_heading {
+#fcydhpnwma .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -3135,13 +3229,13 @@ Cantidad de pasajeros
   border-right-color: #D3D3D3;
 }
 
-#pixujilnrg .gt_bottom_border {
+#fcydhpnwma .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pixujilnrg .gt_col_headings {
+#fcydhpnwma .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3156,7 +3250,7 @@ Cantidad de pasajeros
   border-right-color: #D3D3D3;
 }
 
-#pixujilnrg .gt_col_heading {
+#fcydhpnwma .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3176,7 +3270,7 @@ Cantidad de pasajeros
   overflow-x: hidden;
 }
 
-#pixujilnrg .gt_column_spanner_outer {
+#fcydhpnwma .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3188,15 +3282,15 @@ Cantidad de pasajeros
   padding-right: 4px;
 }
 
-#pixujilnrg .gt_column_spanner_outer:first-child {
+#fcydhpnwma .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pixujilnrg .gt_column_spanner_outer:last-child {
+#fcydhpnwma .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pixujilnrg .gt_column_spanner {
+#fcydhpnwma .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3208,11 +3302,11 @@ Cantidad de pasajeros
   width: 100%;
 }
 
-#pixujilnrg .gt_spanner_row {
+#fcydhpnwma .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pixujilnrg .gt_group_heading {
+#fcydhpnwma .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3238,7 +3332,7 @@ Cantidad de pasajeros
   text-align: left;
 }
 
-#pixujilnrg .gt_empty_group_heading {
+#fcydhpnwma .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3253,15 +3347,15 @@ Cantidad de pasajeros
   vertical-align: middle;
 }
 
-#pixujilnrg .gt_from_md > :first-child {
+#fcydhpnwma .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pixujilnrg .gt_from_md > :last-child {
+#fcydhpnwma .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pixujilnrg .gt_row {
+#fcydhpnwma .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3280,7 +3374,7 @@ Cantidad de pasajeros
   overflow-x: hidden;
 }
 
-#pixujilnrg .gt_stub {
+#fcydhpnwma .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3293,7 +3387,7 @@ Cantidad de pasajeros
   padding-right: 5px;
 }
 
-#pixujilnrg .gt_stub_row_group {
+#fcydhpnwma .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3307,15 +3401,15 @@ Cantidad de pasajeros
   vertical-align: top;
 }
 
-#pixujilnrg .gt_row_group_first td {
+#fcydhpnwma .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pixujilnrg .gt_row_group_first th {
+#fcydhpnwma .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pixujilnrg .gt_summary_row {
+#fcydhpnwma .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3325,16 +3419,16 @@ Cantidad de pasajeros
   padding-right: 5px;
 }
 
-#pixujilnrg .gt_first_summary_row {
+#fcydhpnwma .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pixujilnrg .gt_first_summary_row.thick {
+#fcydhpnwma .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pixujilnrg .gt_last_summary_row {
+#fcydhpnwma .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3344,7 +3438,7 @@ Cantidad de pasajeros
   border-bottom-color: #D3D3D3;
 }
 
-#pixujilnrg .gt_grand_summary_row {
+#fcydhpnwma .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3354,7 +3448,7 @@ Cantidad de pasajeros
   padding-right: 5px;
 }
 
-#pixujilnrg .gt_first_grand_summary_row {
+#fcydhpnwma .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3364,7 +3458,7 @@ Cantidad de pasajeros
   border-top-color: #D3D3D3;
 }
 
-#pixujilnrg .gt_last_grand_summary_row_top {
+#fcydhpnwma .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3374,11 +3468,11 @@ Cantidad de pasajeros
   border-bottom-color: #D3D3D3;
 }
 
-#pixujilnrg .gt_striped {
+#fcydhpnwma .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pixujilnrg .gt_table_body {
+#fcydhpnwma .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3387,7 +3481,7 @@ Cantidad de pasajeros
   border-bottom-color: #D3D3D3;
 }
 
-#pixujilnrg .gt_footnotes {
+#fcydhpnwma .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3401,7 +3495,7 @@ Cantidad de pasajeros
   border-right-color: #D3D3D3;
 }
 
-#pixujilnrg .gt_footnote {
+#fcydhpnwma .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3410,7 +3504,7 @@ Cantidad de pasajeros
   padding-right: 5px;
 }
 
-#pixujilnrg .gt_sourcenotes {
+#fcydhpnwma .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3424,7 +3518,7 @@ Cantidad de pasajeros
   border-right-color: #D3D3D3;
 }
 
-#pixujilnrg .gt_sourcenote {
+#fcydhpnwma .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3432,72 +3526,72 @@ Cantidad de pasajeros
   padding-right: 5px;
 }
 
-#pixujilnrg .gt_left {
+#fcydhpnwma .gt_left {
   text-align: left;
 }
 
-#pixujilnrg .gt_center {
+#fcydhpnwma .gt_center {
   text-align: center;
 }
 
-#pixujilnrg .gt_right {
+#fcydhpnwma .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pixujilnrg .gt_font_normal {
+#fcydhpnwma .gt_font_normal {
   font-weight: normal;
 }
 
-#pixujilnrg .gt_font_bold {
+#fcydhpnwma .gt_font_bold {
   font-weight: bold;
 }
 
-#pixujilnrg .gt_font_italic {
+#fcydhpnwma .gt_font_italic {
   font-style: italic;
 }
 
-#pixujilnrg .gt_super {
+#fcydhpnwma .gt_super {
   font-size: 65%;
 }
 
-#pixujilnrg .gt_footnote_marks {
+#fcydhpnwma .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pixujilnrg .gt_asterisk {
+#fcydhpnwma .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pixujilnrg .gt_indent_1 {
+#fcydhpnwma .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pixujilnrg .gt_indent_2 {
+#fcydhpnwma .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pixujilnrg .gt_indent_3 {
+#fcydhpnwma .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pixujilnrg .gt_indent_4 {
+#fcydhpnwma .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pixujilnrg .gt_indent_5 {
+#fcydhpnwma .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pixujilnrg .katex-display {
+#fcydhpnwma .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pixujilnrg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fcydhpnwma div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3595,29 +3689,32 @@ Cantidad de pasajeros
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="sc">%&gt;%</span>  </span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_hide</span>(<span class="at">columns =</span> <span class="fu">c</span>(mapa, reloj_plot, evolucion_plot))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
-<div id="mxydqsgerc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="swymnmezra" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#mxydqsgerc table {
+#swymnmezra table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mxydqsgerc thead, #mxydqsgerc tbody, #mxydqsgerc tfoot, #mxydqsgerc tr, #mxydqsgerc td, #mxydqsgerc th {
+#swymnmezra thead, #swymnmezra tbody, #swymnmezra tfoot, #swymnmezra tr, #swymnmezra td, #swymnmezra th {
   border-style: none;
 }
 
-#mxydqsgerc p {
+#swymnmezra p {
   margin: 0;
   padding: 0;
 }
 
-#mxydqsgerc .gt_table {
+#swymnmezra .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3643,12 +3740,12 @@ Cantidad de pasajeros
   border-left-color: #D3D3D3;
 }
 
-#mxydqsgerc .gt_caption {
+#swymnmezra .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mxydqsgerc .gt_title {
+#swymnmezra .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3660,7 +3757,7 @@ Cantidad de pasajeros
   border-bottom-width: 0;
 }
 
-#mxydqsgerc .gt_subtitle {
+#swymnmezra .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3672,7 +3769,7 @@ Cantidad de pasajeros
   border-top-width: 0;
 }
 
-#mxydqsgerc .gt_heading {
+#swymnmezra .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -3684,13 +3781,13 @@ Cantidad de pasajeros
   border-right-color: #D3D3D3;
 }
 
-#mxydqsgerc .gt_bottom_border {
+#swymnmezra .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mxydqsgerc .gt_col_headings {
+#swymnmezra .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3705,7 +3802,7 @@ Cantidad de pasajeros
   border-right-color: #D3D3D3;
 }
 
-#mxydqsgerc .gt_col_heading {
+#swymnmezra .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3725,7 +3822,7 @@ Cantidad de pasajeros
   overflow-x: hidden;
 }
 
-#mxydqsgerc .gt_column_spanner_outer {
+#swymnmezra .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3737,15 +3834,15 @@ Cantidad de pasajeros
   padding-right: 4px;
 }
 
-#mxydqsgerc .gt_column_spanner_outer:first-child {
+#swymnmezra .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mxydqsgerc .gt_column_spanner_outer:last-child {
+#swymnmezra .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mxydqsgerc .gt_column_spanner {
+#swymnmezra .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3757,11 +3854,11 @@ Cantidad de pasajeros
   width: 100%;
 }
 
-#mxydqsgerc .gt_spanner_row {
+#swymnmezra .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mxydqsgerc .gt_group_heading {
+#swymnmezra .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3787,7 +3884,7 @@ Cantidad de pasajeros
   text-align: left;
 }
 
-#mxydqsgerc .gt_empty_group_heading {
+#swymnmezra .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3802,15 +3899,15 @@ Cantidad de pasajeros
   vertical-align: middle;
 }
 
-#mxydqsgerc .gt_from_md > :first-child {
+#swymnmezra .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mxydqsgerc .gt_from_md > :last-child {
+#swymnmezra .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mxydqsgerc .gt_row {
+#swymnmezra .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3829,7 +3926,7 @@ Cantidad de pasajeros
   overflow-x: hidden;
 }
 
-#mxydqsgerc .gt_stub {
+#swymnmezra .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3842,7 +3939,7 @@ Cantidad de pasajeros
   padding-right: 5px;
 }
 
-#mxydqsgerc .gt_stub_row_group {
+#swymnmezra .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3856,15 +3953,15 @@ Cantidad de pasajeros
   vertical-align: top;
 }
 
-#mxydqsgerc .gt_row_group_first td {
+#swymnmezra .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mxydqsgerc .gt_row_group_first th {
+#swymnmezra .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mxydqsgerc .gt_summary_row {
+#swymnmezra .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3874,16 +3971,16 @@ Cantidad de pasajeros
   padding-right: 5px;
 }
 
-#mxydqsgerc .gt_first_summary_row {
+#swymnmezra .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mxydqsgerc .gt_first_summary_row.thick {
+#swymnmezra .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mxydqsgerc .gt_last_summary_row {
+#swymnmezra .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3893,7 +3990,7 @@ Cantidad de pasajeros
   border-bottom-color: #D3D3D3;
 }
 
-#mxydqsgerc .gt_grand_summary_row {
+#swymnmezra .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3903,7 +4000,7 @@ Cantidad de pasajeros
   padding-right: 5px;
 }
 
-#mxydqsgerc .gt_first_grand_summary_row {
+#swymnmezra .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3913,7 +4010,7 @@ Cantidad de pasajeros
   border-top-color: #D3D3D3;
 }
 
-#mxydqsgerc .gt_last_grand_summary_row_top {
+#swymnmezra .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3923,11 +4020,11 @@ Cantidad de pasajeros
   border-bottom-color: #D3D3D3;
 }
 
-#mxydqsgerc .gt_striped {
+#swymnmezra .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mxydqsgerc .gt_table_body {
+#swymnmezra .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3936,7 +4033,7 @@ Cantidad de pasajeros
   border-bottom-color: #D3D3D3;
 }
 
-#mxydqsgerc .gt_footnotes {
+#swymnmezra .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3950,7 +4047,7 @@ Cantidad de pasajeros
   border-right-color: #D3D3D3;
 }
 
-#mxydqsgerc .gt_footnote {
+#swymnmezra .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3959,7 +4056,7 @@ Cantidad de pasajeros
   padding-right: 5px;
 }
 
-#mxydqsgerc .gt_sourcenotes {
+#swymnmezra .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3973,7 +4070,7 @@ Cantidad de pasajeros
   border-right-color: #D3D3D3;
 }
 
-#mxydqsgerc .gt_sourcenote {
+#swymnmezra .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3981,72 +4078,72 @@ Cantidad de pasajeros
   padding-right: 5px;
 }
 
-#mxydqsgerc .gt_left {
+#swymnmezra .gt_left {
   text-align: left;
 }
 
-#mxydqsgerc .gt_center {
+#swymnmezra .gt_center {
   text-align: center;
 }
 
-#mxydqsgerc .gt_right {
+#swymnmezra .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mxydqsgerc .gt_font_normal {
+#swymnmezra .gt_font_normal {
   font-weight: normal;
 }
 
-#mxydqsgerc .gt_font_bold {
+#swymnmezra .gt_font_bold {
   font-weight: bold;
 }
 
-#mxydqsgerc .gt_font_italic {
+#swymnmezra .gt_font_italic {
   font-style: italic;
 }
 
-#mxydqsgerc .gt_super {
+#swymnmezra .gt_super {
   font-size: 65%;
 }
 
-#mxydqsgerc .gt_footnote_marks {
+#swymnmezra .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mxydqsgerc .gt_asterisk {
+#swymnmezra .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mxydqsgerc .gt_indent_1 {
+#swymnmezra .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mxydqsgerc .gt_indent_2 {
+#swymnmezra .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mxydqsgerc .gt_indent_3 {
+#swymnmezra .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mxydqsgerc .gt_indent_4 {
+#swymnmezra .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mxydqsgerc .gt_indent_5 {
+#swymnmezra .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mxydqsgerc .katex-display {
+#swymnmezra .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mxydqsgerc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#swymnmezra div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -4214,7 +4311,7 @@ Uso por hora
 </div>
 <div class="cell">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> tabla <span class="sc">%&gt;%</span> </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="fu">cells_column_labels</span>(<span class="at">columns =</span> variacion), </span>
@@ -4284,6 +4381,8 @@ Uso por hora
 <section id="sessioninfo" class="level1">
 <h1>SessionInfo()</h1>
 <div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">package_info</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(attached<span class="sc">==</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(package, loadedversion, date, source) <span class="sc">%&gt;%</span> </span>
@@ -4291,25 +4390,26 @@ Uso por hora
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title=</span><span class="st">'Paquetes utilizados'</span>,</span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">subtitle=</span><span class="st">'Versiones'</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_align_table_header</span>(<span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
-<div id="qusmqpupov" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qusmqpupov table {
+<div id="gtmrqhadbz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gtmrqhadbz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qusmqpupov thead, #qusmqpupov tbody, #qusmqpupov tfoot, #qusmqpupov tr, #qusmqpupov td, #qusmqpupov th {
+#gtmrqhadbz thead, #gtmrqhadbz tbody, #gtmrqhadbz tfoot, #gtmrqhadbz tr, #gtmrqhadbz td, #gtmrqhadbz th {
   border-style: none;
 }
 
-#qusmqpupov p {
+#gtmrqhadbz p {
   margin: 0;
   padding: 0;
 }
 
-#qusmqpupov .gt_table {
+#gtmrqhadbz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4335,12 +4435,12 @@ Uso por hora
   border-left-color: #D3D3D3;
 }
 
-#qusmqpupov .gt_caption {
+#gtmrqhadbz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qusmqpupov .gt_title {
+#gtmrqhadbz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4352,7 +4452,7 @@ Uso por hora
   border-bottom-width: 0;
 }
 
-#qusmqpupov .gt_subtitle {
+#gtmrqhadbz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4364,7 +4464,7 @@ Uso por hora
   border-top-width: 0;
 }
 
-#qusmqpupov .gt_heading {
+#gtmrqhadbz .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -4376,13 +4476,13 @@ Uso por hora
   border-right-color: #D3D3D3;
 }
 
-#qusmqpupov .gt_bottom_border {
+#gtmrqhadbz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qusmqpupov .gt_col_headings {
+#gtmrqhadbz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4397,7 +4497,7 @@ Uso por hora
   border-right-color: #D3D3D3;
 }
 
-#qusmqpupov .gt_col_heading {
+#gtmrqhadbz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4417,7 +4517,7 @@ Uso por hora
   overflow-x: hidden;
 }
 
-#qusmqpupov .gt_column_spanner_outer {
+#gtmrqhadbz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4429,15 +4529,15 @@ Uso por hora
   padding-right: 4px;
 }
 
-#qusmqpupov .gt_column_spanner_outer:first-child {
+#gtmrqhadbz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qusmqpupov .gt_column_spanner_outer:last-child {
+#gtmrqhadbz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qusmqpupov .gt_column_spanner {
+#gtmrqhadbz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4449,11 +4549,11 @@ Uso por hora
   width: 100%;
 }
 
-#qusmqpupov .gt_spanner_row {
+#gtmrqhadbz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qusmqpupov .gt_group_heading {
+#gtmrqhadbz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4479,7 +4579,7 @@ Uso por hora
   text-align: left;
 }
 
-#qusmqpupov .gt_empty_group_heading {
+#gtmrqhadbz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4494,15 +4594,15 @@ Uso por hora
   vertical-align: middle;
 }
 
-#qusmqpupov .gt_from_md > :first-child {
+#gtmrqhadbz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qusmqpupov .gt_from_md > :last-child {
+#gtmrqhadbz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qusmqpupov .gt_row {
+#gtmrqhadbz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4521,7 +4621,7 @@ Uso por hora
   overflow-x: hidden;
 }
 
-#qusmqpupov .gt_stub {
+#gtmrqhadbz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4534,7 +4634,7 @@ Uso por hora
   padding-right: 5px;
 }
 
-#qusmqpupov .gt_stub_row_group {
+#gtmrqhadbz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4548,15 +4648,15 @@ Uso por hora
   vertical-align: top;
 }
 
-#qusmqpupov .gt_row_group_first td {
+#gtmrqhadbz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qusmqpupov .gt_row_group_first th {
+#gtmrqhadbz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qusmqpupov .gt_summary_row {
+#gtmrqhadbz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4566,16 +4666,16 @@ Uso por hora
   padding-right: 5px;
 }
 
-#qusmqpupov .gt_first_summary_row {
+#gtmrqhadbz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qusmqpupov .gt_first_summary_row.thick {
+#gtmrqhadbz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qusmqpupov .gt_last_summary_row {
+#gtmrqhadbz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4585,7 +4685,7 @@ Uso por hora
   border-bottom-color: #D3D3D3;
 }
 
-#qusmqpupov .gt_grand_summary_row {
+#gtmrqhadbz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4595,7 +4695,7 @@ Uso por hora
   padding-right: 5px;
 }
 
-#qusmqpupov .gt_first_grand_summary_row {
+#gtmrqhadbz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4605,7 +4705,7 @@ Uso por hora
   border-top-color: #D3D3D3;
 }
 
-#qusmqpupov .gt_last_grand_summary_row_top {
+#gtmrqhadbz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4615,11 +4715,11 @@ Uso por hora
   border-bottom-color: #D3D3D3;
 }
 
-#qusmqpupov .gt_striped {
+#gtmrqhadbz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qusmqpupov .gt_table_body {
+#gtmrqhadbz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4628,7 +4728,7 @@ Uso por hora
   border-bottom-color: #D3D3D3;
 }
 
-#qusmqpupov .gt_footnotes {
+#gtmrqhadbz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4642,7 +4742,7 @@ Uso por hora
   border-right-color: #D3D3D3;
 }
 
-#qusmqpupov .gt_footnote {
+#gtmrqhadbz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4651,7 +4751,7 @@ Uso por hora
   padding-right: 5px;
 }
 
-#qusmqpupov .gt_sourcenotes {
+#gtmrqhadbz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4665,7 +4765,7 @@ Uso por hora
   border-right-color: #D3D3D3;
 }
 
-#qusmqpupov .gt_sourcenote {
+#gtmrqhadbz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4673,72 +4773,72 @@ Uso por hora
   padding-right: 5px;
 }
 
-#qusmqpupov .gt_left {
+#gtmrqhadbz .gt_left {
   text-align: left;
 }
 
-#qusmqpupov .gt_center {
+#gtmrqhadbz .gt_center {
   text-align: center;
 }
 
-#qusmqpupov .gt_right {
+#gtmrqhadbz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qusmqpupov .gt_font_normal {
+#gtmrqhadbz .gt_font_normal {
   font-weight: normal;
 }
 
-#qusmqpupov .gt_font_bold {
+#gtmrqhadbz .gt_font_bold {
   font-weight: bold;
 }
 
-#qusmqpupov .gt_font_italic {
+#gtmrqhadbz .gt_font_italic {
   font-style: italic;
 }
 
-#qusmqpupov .gt_super {
+#gtmrqhadbz .gt_super {
   font-size: 65%;
 }
 
-#qusmqpupov .gt_footnote_marks {
+#gtmrqhadbz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qusmqpupov .gt_asterisk {
+#gtmrqhadbz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qusmqpupov .gt_indent_1 {
+#gtmrqhadbz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qusmqpupov .gt_indent_2 {
+#gtmrqhadbz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qusmqpupov .gt_indent_3 {
+#gtmrqhadbz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qusmqpupov .gt_indent_4 {
+#gtmrqhadbz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qusmqpupov .gt_indent_5 {
+#gtmrqhadbz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qusmqpupov .katex-display {
+#gtmrqhadbz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qusmqpupov div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gtmrqhadbz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

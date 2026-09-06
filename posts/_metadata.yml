@@ -1,5 +1,16 @@
 # options specified here will apply to all posts in this folder
 
+execute:
+  echo: false
+
+format:
+  html:
+    code-fold: true
+    code-summary: "Ver código"
+    toc: true
+    toc-depth: 3
+    toc-location: left
+
 # freeze computational output
 # (see https://quarto.org/docs/projects/code-execution.html#freeze)
 freeze: true
