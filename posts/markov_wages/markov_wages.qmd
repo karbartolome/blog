@@ -1,0 +1,443 @@
+---
+title: "Transiciones en salarios de egresados universitarios"
+description: |
+  Cadenas de Markov aplicadas a salarios de egresados universitarios en Argentina, 2019-2021. Se estima la matriz de transición de un nivel salarial a otro.
+author:
+  - first_name: "Karina"
+    last_name: "Bartolomé"
+date: "2022-12-04"
+base_url: https://karbartolome.github.io/blog/posts/markov_salarios
+image: preview.png
+twitter:
+  site: "@karbartolome"
+  creator: "Karina Bartolomé"
+format:
+  html:
+    toc: true
+    toc-depth: 5
+    code-fold: true
+    code-summary: "Mostrar código"
+bibliography: bib.bib
+categories: [markov, probability, r, wages, argentina]
+#nocite: |
+#  @*
+draft: false
+---
+
+# Introducción
+
+El objetivo de este post es mostrar algunas posibles aplicaciones de **cadenas de Markov** para el análisis de datos. Para ello, se utilizan datos de **salarios de egresados universitarios en Argentina**.
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(echo = TRUE,
+                      eval = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+options(scipen=999)
+```
+
+# 1. Librerías y definiciones
+
+Se cargan las librerías a utilizar. Este post se enfoca en el uso de **{markovchain}** 📦[^1], el paquete R más popular para cadenas de Markov.
+
+[^1]: @markovchain
+
+
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(markovchain)
+library(igraph)
+library(gt)
+library(skimr)
+library(here)
+```
+
+Algunas configuraciones adicionales:
+
+```{r}
+#| message: false
+#| warning: false
+theme_set(theme_minimal())
+options(scipen=999)
+path_post <- here("posts", "markov_wages")
+dir.create(file.path(path_post, "01_data"), recursive = TRUE, showWarnings = FALSE)
+```
+
+# 2. Data
+
+Se obtienen los datos correspondientes a [salarios de egresados universitarios en Argentina](https://datos.produccion.gob.ar/dataset/graduados-universitarios-del-sistema-araucano-2016-2018/archivo/afbfc04e-6130-448c-953f-ef601f3e8bda). Mediante el cruce de datos de graduados universitarios entre 2016 y 2018, se obtiene la situación de empleo de cada persona. Estos datos permiten analizar la **inserción ocupacional en Noviembre de 2019, 2020 y 2021 para cada uno de los graduados en el período 2016-2018**.
+
+```{r}
+#| eval: false
+# Librerías ---------------------------------------------------------------
+library(readr)
+library(readxl)
+library(dplyr)
+
+# Datos raw ---------------------------------------------------------------
+df <- read_csv('https://cdn.produccion.gob.ar/cdn-cep/araucano/base_araucano.csv')
+
+# Diccionario de parametrías:
+url_dict <- "https://datos.produccion.gob.ar/dataset/46df1ebe-d0bb-49a1-96dd-fe9751930682/resource/2976f8e2-eb30-412f-a3cf-0a445452a037/download/diccionario.xlsx"
+tmp_dict <- tempfile(fileext = ".xlsx")
+download.file(url_dict, destfile = tmp_dict, mode = "wb")
+
+df_dict <- read_excel(tmp_dict)
+sheetnames <- excel_sheets(tmp_dict)
+
+for (i in seq_along(sheetnames)) {
+  assign(sheetnames[i], read_excel(tmp_dict, sheet = i))
+}
+
+cod_letra <- cod_letra %>% 
+  janitor::clean_names()
+
+# Datos limpios -----------------------------------------------------------
+df_clean <- df %>% 
+  left_join(cod_rama) %>% 
+  left_join(cod_genero) %>% 
+  left_join(cod_disciplina) %>% 
+  left_join(cod_gestion) %>% 
+  left_join(cod_letra) %>% 
+  left_join(cod_region) %>% 
+  left_join(cod_tamaño) %>% 
+  left_join(cod_titulo) %>% 
+  select(id, anio, anioegreso, salario, genero, anionac, 
+         rama, disciplina, tipo_titulo,
+         region, tamaño, actividad = letra_1) %>% 
+  arrange(id, anio)
+
+# Save --------------------------------------------------------------------
+dir.create(file.path(path_post, '01_data'), recursive = TRUE, showWarnings = FALSE)
+df_clean %>% write.csv(file.path(path_post, '01_data', 'df_clean.csv'), row.names=FALSE)
+```
+
+```{r}
+df <- read_csv(file.path(path_post, '01_data', 'df_clean.csv'))
+```
+
+# 3. Análisis exploratorio de los datos
+
+Para el entendimiento de los datos del Sistema Araucano, se recomienda leer el siguiente [hilo de twitter](https://twitter.com/tustovsky/status/1599789517556183041) ✨. A continuación se presenta una descripción de las variables incluidas en los datos a analizar.
+
+```{r}
+skim(df %>% sample_n(10000))
+```
+
+# 4. Definición de segmentos
+
+Tal como se observa, existe información de salarios registrados para los años 2019, 2020 y 2021. Cada individuo aparece en el dataframe 3 veces (una observación por año).
+
+```{r}
+df %>% pull(anio) %>% table()
+```
+
+Se toma una **muestra aleatoria** de individuos egresados en 2018. La muestra permite realizar el procesamiento de los datos de forma más rápida.
+
+```{r}
+set.seed(42)
+ids <- df %>% 
+  filter(anioegreso == 2018) %>% 
+  distinct(id) %>% 
+  sample_n(10000) %>%
+  pull(id)
+```
+
+➡️ Se busca **estimar la probabilidad de transición entre segmentos de salario**. Para ello, se definen [4 segmentos de salario]{.underline}:
+
+🔸 **Sin empleo registrado:** individuos no registrados en Noviembre del año en cuestión.
+
+🔸 **Salario bajo:** individuos con salario bajo en relación al resto de los individuos con salario registrado ese año.
+
+🔸 **Salario medio:** individuos con salario medio en relación al resto de los individuos con salario registrado ese año.
+
+🔸 **Salario alto:** individuos con salario alto en relación al resto de los individuos con salario registrado ese año.
+
+La decisión de considerar los segmentos en términos relativos al resto de los individuos en cada año permite simplificar el análisis para analizar cambios entre segmentos.
+
+```{r}
+df_markov <- df %>%
+  filter(id %in% ids) %>%
+  group_by(anio) %>%
+  mutate(
+    segmento_bin = cut_number(salario, n = 3, dig.lab = 7),
+    segmento = cut_number(
+      salario,
+      n = 3,
+      labels = c('salario_bajo',
+                 'salario_medio',
+                 'salario_alto')
+    )
+  ) %>%
+  mutate(segmento = factor(
+    forcats::fct_explicit_na(segmento, 'sin_empleo_registrado'),
+    levels = c(
+      'sin_empleo_registrado',
+      'salario_bajo',
+      'salario_medio',
+      'salario_alto'
+    )
+  )) %>%
+  ungroup() %>%
+  select(id, anio, salario, segmento, segmento_bin) 
+```
+
+A continuación se presentan los datos correspondientes a [3 individuos aleatorios]{.underline}, con sus respectivos estados (2019, 2020 y 2021). Notar que en el primer caso, el salario comienza siendo alto en relación al resto de los salarios. Sin embargo, en 2021 pasa a ser medio en comparación al resto. Entre 2020 y 2021 su salario en pesos aumentó pero en términos relativos redujo su posición en el ranking salarial.
+
+El segundo individuo arranca en 2019 sin empleo registrado. EN 2020 registra un salario alto y en 2021 su salario pasa a ser bajo en términos relativos. Por otro lado, el tercer individuo comienza el 2019 con un salario alto y luego deja de tener salarios registrados.
+
+```{r}
+df_markov %>% 
+  filter(id %in% c(52626, 210311, 234946)) %>% 
+  gt() %>% 
+  tab_header('Muestra de 3 individuos') %>% 
+  opt_align_table_header('left')
+```
+
+Detrás de los cambios de situación salarial pueden existir un sinfin de explicaciones. El objetivo de este post no es encontrar estas causas, sino aplicar el concepto de cadenas de markov a estas transciones.
+
+Se observa la cantidad de observaciones por año y por segmento. Cada uno de los segmentos fue definido de forma tal que los cortes en salarios generen 3 bins con igual cantidad de observaciones por año.
+
+```{r}
+df_markov %>% 
+  group_by(anio, segmento) %>% 
+  summarise(N=n()) %>%
+  ungroup() %>% 
+  pivot_wider(names_from=anio, values_from=N) %>% 
+  gt() %>% 
+  tab_header(title='Cantidad de individuos por segmento en cada año') %>% 
+  opt_align_table_header('left')
+```
+
+# 5. Visualización de la transición entre segmentos
+
+Previo a la construcción de la matriz de transición sobre los 4 segmentos definidos, se visualiza el **grafo de la transición de estados entre 2019 y 2021**. Utilizando **{igraph}** 📦[^2] se genera un **grafo dirigido** en donde cada **nodo** (o vértice) representa un estado. El **vértice** de origen es segmento salarial en 2019 y el de destino al segmento salarial en 2020. Los ejes representan la proporción de individuos que, habiendo iniciado en 2019 en un estado, transicionan a otro estado en 2021. 
+
+Notar que la suma de estas proporciones = 1 para cada uno de los estados. Es decir, si un individuo parte de salario bajo puede transicionar a salario medio, alto, sin salario registrado o mantenerse en salario bajo.
+
+[^2]: @igraph
+
+```{r}
+#| fig-height: 8
+g <- df_markov %>%
+  select(-salario, -segmento_bin) %>% 
+  filter(anio !=2020) %>% 
+  tidyr::pivot_wider(names_from = anio, values_from = segmento) %>% 
+  group_by(`2019`, `2021`) %>%
+  summarise(freq = n(), .groups = "drop") %>%
+  group_by(`2019`) %>%
+  mutate(
+    freq = round(proportions(freq), 3), 
+    color = case_when(`2019` == 'sin_empleo_registrado' ~ 'red',
+                      TRUE ~ 'lightgrey')
+  ) %>% 
+  graph_from_data_frame(directed=TRUE)
+```
+
+Se indica que el color de los vértices del grafo dependa del segmento.
+
+```{r}
+#| fig-height: 8
+V(g)$color <- ifelse(V(g)$name == 'sin_empleo_registrado', "red", "lightgrey")
+```
+
+La representación de las transiciones en forma gráfica permite observar rápidamente cómo son las transiciones. **En general, alguien que comienza en 2019 en un segmento se mantiene en ese mismo estado en 2021.** Sin embargo, existen casos de individuos que transicionan a salarios mejores o peores (en términos relativos al resto de los individuos).
+
+```{r}
+#| fig-height: 7
+#| fig-width: 10
+g %>%
+  plot(
+    edge.curved = 0.3,
+    edge.label = round(E(.)$freq, 2),
+    edge.arrow.size = 0.5,
+    vertex.size = 20,
+    vertex.label = V(.)$names,
+    vertex.color = V(.)$color,
+    vertex.label.dist = 4,
+    vertex.label.font = 2
+  )
+```
+
+# 6. Cadenas de markov
+
+Los datos se encuentran en un formato adecuado para trabajar con cadenas de Markov. Se presenta un ejemplo simple de cadenas de Markov para luego aplicarlo sobre los datos obtenidos.
+
+## 6.1. Ejemplo simple
+
+Supongamos que se cuenta con datos para 3 individuos, que entre 2019 y 2021 transicionan entre los segmentos A, B y C:
+
+```{r}
+df_temp <- data.frame(
+  id = c(1, 1, 1, 2, 2, 2, 3, 3, 3),
+  anio = rep(c(2019, 2020, 2021), 3),
+  segmento = c('A', 'A', 'B', 'B', 'C', 'C', 'C', 'B', 'C')
+)
+df_temp
+```
+
+La forma de realizar el análisis a nivel individual es mediante la función **split()** que genera los estados por los cuales transitó cada uno de los individuos de la muestra.
+
+```{r}
+split(df_temp$segmento, df_temp$id)
+```
+
+La función **markovchainFit()** permite estimar la **matriz de transición** a partir de los datos por individuo.
+
+```{r}
+mc <- markovchainFit(data = split(df_temp$segmento, df_temp$id),
+                     method = 'mle' #  'bootstrap', 'laplacian'
+)
+mc$estimate
+```
+
+Esta matriz indica la **probabilidad de transicionar al siguiente estado**, considerando un estado inicial. En este sentido, **cada fila representa el estado inicial**, con lo cual un usuario que comienza en el estado A tiene 50% de probabilidad de mantenerse en el estado A y 50% de probabilidad de transicionar al estado B.
+
+Notar que la probabilidad de que alguien que comience en A transicione a C es 0 en este caso. Esto es así dado que en los datos no se incluyó ninguna observación en donde la se pase de un estado A a C.
+
+## 6.2. Transición en segmentos de salarios
+
+Para poder realizar el análisis, se busca ajustar la cadena de markov a partir de datos de cada individuo.
+
+```{r}
+split(df_markov %>% head(6) %>% pull(segmento),
+      df_markov %>% head(6) %>% pull(id))
+```
+
+A partir de estos datos, **se ajusta la cadena de markov**. En este caso, utilizando el método **MLE** (**maximum likelihood estimation** o estimación de máxima verosimilitud).
+
+```{r}
+mc <- markovchainFit(data = split(df_markov$segmento, df_markov$id),
+                     method = 'mle' #  'bootstrap', 'laplacian'
+)
+```
+
+Se muestra en forma prolija la matriz de transición entre estados:
+
+```{r}
+data.frame(mc$estimate@transitionMatrix) %>%
+  select(all_of(levels(df_markov$segmento))) %>%
+  rownames_to_column('estado_inicial') %>%
+  mutate(estado_inicial = factor(estado_inicial,
+                                 levels = levels(df_markov$segmento))) %>%
+  arrange(estado_inicial) %>%
+  gt(rowname_col = 'estado_inicial') %>%
+  fmt_number(2:5) %>%
+  tab_header(title = 'Matriz de transición') %>%
+  opt_align_table_header('left') 
+```
+
+Es posible visualizar la **matriz de transición en forma de grafo**. Esta matriz es similar a la que se contruyó con **{igraph} 📦**. Sin embargo, esta matriz considera la transición en 2 pasos (años), mientras que en la visualización inicial se había considerado la generación del grafo a partir de un origen (2019) y destino (2021).
+
+```{r}
+#| fig-height: 6
+#| fig-width: 10
+mc$color <-
+  ifelse(mc$estimate@states == 'sin_empleo_registrado',
+         "red",
+         "lightgrey")
+
+plot(
+  mc$estimate,
+  edge.curved = 0.3,
+  edge.arrow.size = 0.5,
+  vertex.size = 20,
+  vertex.color = mc$color,
+  vertex.label.dist = 4,
+  vertex.label.font = 2
+)
+```
+
+## Probabilidad en 2 años
+
+📝Suponiendo que un individuo parte de un segmento "salario_bajo" en Noviembre 2022, se busca estimar la probabilidad de transicionar al segmento de "salario_alto" en Noviembre 2024.
+
+Una **posible alternativa** es considerar la matriz de transición inicial y realizar el **cálculo manual**:
+
+```{r}
+# Prob de mantenerse en salario bajo en t=1 y pasar a salario alto en t=2
+prob_1b = mc$estimate@transitionMatrix %>% data.frame() %>%
+  filter(row.names(.) == 'salario_bajo') %>% pull(salario_bajo)
+
+prob_2a = mc$estimate@transitionMatrix %>% data.frame() %>%
+  filter(row.names(.) == 'salario_bajo') %>% pull(salario_alto)
+
+prob_ba = prob_1b * prob_2a
+
+# Prob de pasar a salario medio en t=1 y pasar a salario alto en t=2
+prob_1m = mc$estimate@transitionMatrix %>% data.frame() %>%
+  filter(row.names(.) == 'salario_bajo') %>% pull(salario_medio)
+
+prob_2a = mc$estimate@transitionMatrix %>% data.frame() %>%
+  filter(row.names(.) == 'salario_medio') %>% pull(salario_alto)
+
+prob_ma = prob_1m * prob_2a
+
+# Prob de pasar a salario alto en t=1 y mantenerse en salario alto en t=2
+prob_1a = mc$estimate@transitionMatrix %>% data.frame() %>%
+  filter(row.names(.) == 'salario_bajo') %>% pull(salario_alto)
+
+prob_2a = mc$estimate@transitionMatrix %>% data.frame() %>%
+  filter(row.names(.) == 'salario_alto') %>% pull(salario_alto)
+
+prob_aa = prob_1a * prob_2a
+
+round((prob_ba + prob_ma + prob_aa), 2)
+```
+
+Esto es muy tedioso. Una forma más simple es utilizar la matriz de transición al cuadrado (2 años). Esto se denomina **probabilidad de transición de n pasos**. Notar que en ambos casos se obtiene el mismo resultado.
+
+```{r}
+n = 2 
+mc_2y <- mc$estimate ^ n
+```
+
+```{r}
+data.frame(mc_2y@transitionMatrix) %>%
+  select(all_of(levels(df_markov$segmento))) %>%
+  rownames_to_column('estado_inicial') %>%
+  mutate(estado_inicial = factor(estado_inicial,
+                                 levels = levels(df_markov$segmento))) %>%
+  arrange(estado_inicial) %>%
+  gt(rowname_col = 'estado_inicial') %>%
+  fmt_number(2:5) %>%
+  tab_style(
+    style = cell_fill(color = "grey"),
+    locations = cells_body(columns = salario_alto,
+                           rows = 2)
+  )
+```
+
+
+
+# Comentarios finales
+
+En este post mostraron algunas cuestiones vinculadas a cadenas de markov en R. Se utilizó como ejemplo los datos de salarios de egresados universitarios en Argentina. **Dado que el objetivo era indagar sobre aspectos de las cadenas de markov, ciertas cuestiones metodológicas sobre los datos podrían enriquecer muchísimo el análisis**. Cualquier comentario, duda o sugerencia es bienvenida! 
+
+## Contacto ✉
+
+Karina Bartolome, [Linkedin](https://www.linkedin.com/in/karinabartolome/), [Twitter](https://twitter.com/karbartolome), [Github](https://github.com/karbartolome), [Blogpost](https://karbartolome-blog.netlify.app/)
+
+
+
+# SessionInfo()
+
+```{r}
+sessioninfo::package_info() %>% 
+  filter(attached==TRUE) %>% 
+  select(package, loadedversion, date, source) %>% 
+  gt() %>% 
+  tab_header(title='Paquetes utilizados',
+             subtitle='Versiones') %>% 
+  opt_align_table_header('left')
+```
+
+
+
+

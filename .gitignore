@@ -219,5 +219,5 @@ __marimo__/
 
 /.quarto/
 
-
-*posts/subte_*
+*.csv
+*.rds

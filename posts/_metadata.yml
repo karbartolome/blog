@@ -9,12 +9,14 @@ format:
     code-fold: true
     code-summary: "Ver código"
     toc: true
+    toc-title: "Tabla de contenidos"
     toc-depth: 3
     toc-location: left
-
 # freeze computational output
 # (see https://quarto.org/docs/projects/code-execution.html#freeze)
 freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+lang: es
